@@ -12,7 +12,7 @@ import com.gs.training.petardocore.constant.PetardoCoreConstants;
 import com.gs.training.petardocore.service.ResultadoService;
 
 @RestController
-@RequestMapping("/ts/demo/base/v1")
+@RequestMapping("${basePath}")
 public class MovimientosController {
 
     private final ResultadoService resultadoService;

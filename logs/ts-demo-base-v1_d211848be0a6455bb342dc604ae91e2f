@@ -15,3 +15,8 @@
 {"log_data":{"fecha":"2024-07-23 23:00:51.49","Level":"INFO","Mensaje":" Starting ProtocolHandler [\"http-nio-8082\"]","servicios":[],"TiempoTotal":1}}
 {"log_data":{"fecha":"2024-07-23 23:00:51.55","Level":"INFO","Mensaje":" Tomcat started on port 8082 (http) with context path ''","servicios":[],"TiempoTotal":1}}
 {"log_data":{"fecha":"2024-07-23 23:00:51.57","Level":"INFO","Mensaje":" Started PetardoCoreApplication in 8.547 seconds (process running for 12.963)","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-23 23:04:04.90","Level":"INFO","Mensaje":" Initializing Spring DispatcherServlet 'dispatcherServlet'","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-23 23:04:04.90","Level":"INFO","Mensaje":" Initializing Servlet 'dispatcherServlet'","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-23 23:04:04.90","Level":"INFO","Mensaje":" Completed initialization in 0 ms","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-23 23:14:29.93","Level":"INFO","Mensaje":" Application shutdown requested.","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-23 23:14:29.95","Level":"INFO","Mensaje":" Stopping ProtocolHandler [\"http-nio-8082\"]","servicios":[],"TiempoTotal":1}}
