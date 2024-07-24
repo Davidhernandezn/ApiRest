@@ -1,0 +1,12 @@
+/home/coem/sonar-scanner/bin/sonar-scanner \
+-Dsonar.projectName=training-ts-demo-base-v1 \
+-Dsonar.projectKey=training-ts-demo-base-v1 \
+-Dsonar.sources=src/main \
+-Dsonar.java.binaries=src/main \
+-Dsonar.java.libraries=/var/jenkins_home/.m2/repository/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar \
+-Dsonar.exclusions=src/test,**/*AESLlaves.java,**/*Application.java,**/*MongoDatasource.java,**/*Main,**/HeadersAspectService.java \
+-Dsonar.javascript.lcov.reportPaths=/target/site/jacoco/jacoco.xml \
+-Dsonar.coverage.exclusions=src/**/constant/**,src/**/constants/**,src/**/registry/**,src/**/documents/**,src/**/document/**,src/**/dtos/**,src/**/dto/**,src/**/models/**,src/**/model/**,src/**/config/**,src/**/auth/**,src/**/algoritm/**,src/**/crypto/**,src/**/util/**,src/**/utils/**,src/**/aspect/**,src/**/aspects/** \
+-Dsonar.sourceEncoding=UTF-8 \
+-Dsonar.host.url=http://10.57.113.151:9000/ \
+-Dsonar.login=TOKENSONAR

@@ -1,0 +1,39 @@
+[
+    {
+
+    "containerDefinitions": [{
+     "name": "container-NOMBREREPOSITORIO",
+     "image": "IDACCOUNT.dkr.ecr.us-east-1.amazonaws.com/NOMBREREPOSITORIO:VERSION",
+     "portMappings": [{
+      "containerPort": 8081,
+      "hostPort": 8081,
+      "protocol": "tcp"
+     }],
+     "essential": true,
+     "secrets": "SECRETOS",
+     "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+       "awslogs-group": "/ecs/TD-NOMBREREPOSITORIOUPPER",
+       "awslogs-region": "us-east-1",
+       "awslogs-stream-prefix": "ecs"
+      }
+     }
+    }],
+    "family": "TD-NOMBREREPOSITORIOUPPER",
+    "taskRoleArn": "arn:aws:iam::IDACCOUNT:role/ecsTaskExecutionRole",
+    "executionRoleArn": "arn:aws:iam::IDACCOUNT:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "requiresCompatibilities": [
+     "FARGATE"
+    ],
+    "cpu": "2048",
+    "memory": "4096"
+   },
+   {
+    "cluster": "BAZCREDITO",
+    "service": "SRV-BAZ-CREDITO-NOMBREREPOSITORIO",
+    "desiredCount": 1,
+    "taskDefinition" : "ARNTASKDEFINITION"
+   }
+]

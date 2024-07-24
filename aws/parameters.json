@@ -1,0 +1,52 @@
+{
+  "Microservicio": "ts-demo-base-v1",
+  "BasePath": "/ts/demo/base/v1*",
+  "healthCheckPath": "/ts/demo/base/v1/actuator/health",
+  "containerPort": "8081/tcp",
+  "serviceDiscovery": "false",
+  "efs": "false",
+  "ServiceName": "srv-ts-demobasev1-training",
+  "ServiceDiscoveryName": "sd-ts-demobasev1-training",
+  "TaskName": "td-ts-demobasev1-training",
+  "ContainerName": "container-ts-demobasev1-training",
+  "TargetGroupName": "tg-tsdemobasev1",
+  "microserviceSize": "small",
+  "ECRName": "ts-demobasev1-training",
+  "CloudWatchName": "/ecs/ts-demobasev1-training",
+  
+  "ambientes": {
+    "dev": {
+      "Cluster": "CLUSTER-LOANS-CORE",
+      "BalancerName": "ALB-LOANS-CORE-NCP-DEV",
+      "PortName": "444",
+      "Namespace": "namespace-global_balances",
+      "subnets": ["subnet-010d1cc5c2d3da1b5","subnet-044d219fb3a7f133a"],
+      "ecs_security_group_name": "sg-0db5119f433519e26",
+      "vpc_name": "vpc-0ba77dfa4de5ac9a5",
+      "namespace": "namespace-global_balances",
+      "kmsName": "aws/ecr"
+    },
+    "qa": {
+      "Cluster": "CLUSTER-LOANS-CORE",
+      "BalancerName": "ALB-LOANS-CORE-NCP-DEV",
+      "PortName": "444",
+      "Namespace": "namespace-global_balances",
+      "subnets": ["subnet-010d1cc5c2d3da1b5","subnet-044d219fb3a7f133a"],
+      "ecs_security_group_name": "sg-0db5119f433519e26",
+      "vpc_name": "vpc-0ba77dfa4de5ac9a5",
+      "namespace": "namespace-global_balances",
+      "kmsName": "aws/ecr"
+    },
+    "prod": {
+      "Cluster": "CLUSTER-LOANS-CORE",
+      "BalancerName": "ALB-LOANS-CORE-NCP-DEV",
+      "PortName": "444",
+      "Namespace": "namespace-global_balances",
+      "subnets": ["subnet-010d1cc5c2d3da1b5","subnet-044d219fb3a7f133a"],
+      "ecs_security_group_name": "sg-0db5119f433519e26",
+      "vpc_name": "vpc-0ba77dfa4de5ac9a5",
+      "namespace": "namespace-global_balances",
+      "kmsName": "aws/ecr"
+    }
+  }
+}

@@ -1,0 +1,273 @@
+openapi: 3.0.1
+info:
+  title: api-name
+  description: api-name
+  version: 0.0.1
+paths:
+  /apipath:
+    post:
+      description: Post Action in /apipath
+      tags:
+        - Tag1
+      parameters:
+        - in: header
+          name: x-user-token
+          required: true
+          description: User token
+          schema:
+            type: string
+            default: SRfVZrTYvdm7mzzZmcuiDViACkAx
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/request'
+        description: Data required to register a request
+        required: true
+      responses:
+        '200':
+          description: Ok
+          headers:
+            x-id-interaction:
+              description: RFC4122 Unique correlation identifier. In its canonical textual representation the sixteen octets of a UUID are represented as 32 hexadecimal digits (base 16) shown in five groups separated by hyphens of the form 8-4-4-4-4-12, giving a total of 36 characters (32 alphanumeric characters and four hyphens).
+              schema:
+                type: string
+                default: 123e4567-e89b-12d3-a456-426655440000
+          content:
+            application/json:
+              examples:
+                response:
+                  value:
+                    status: 200.Successful Request Registration.0000
+                    message: Successful Operation.
+                    folio: 0e9f2972-b215-45f5-b1d2-05815c0b4937
+                    warning: Proper use of the application is recommended, any improper use will be sanctioned.
+                    result: Request Successfully Sent
+        '400':
+          description: Incorrect application
+          headers:
+            x-id-interaction:
+              description: RFC4122 Unique correlation identifier. In its canonical textual representation the sixteen octets of a UUID are represented as 32 hexadecimal digits (base 16) shown in five groups separated by hyphens of the form 8-4-4-4-4-12, giving a total of 36 characters (32 alphanumeric characters and four hyphens).
+              schema:
+                type: string
+                default: 123e4567-e89b-12d3-a456-426655440000
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error400'
+              examples:
+                response:
+                  value: |-
+                    {
+                      "status": "400.api-name.0001",
+                      "message": "Incorrect input parameters, please validate your information.",
+                      "folio": "0e9f2972-b215-45f5-b1d2-05815c0b4937",
+                      "warning": "Proper use of the application is recommended, any improper use will be sanctioned.",
+                      "info": "https://baz-developer.workshop.com.mx/info#400.api-name.0001",
+                      "details": []
+                    }
+        '401':
+          description: Unauthorized
+          headers:
+            x-id-interaction:
+              description: RFC4122 Unique correlation identifier. In its canonical textual representation the sixteen octets of a UUID are represented as 32 hexadecimal digits (base 16) shown in five groups separated by hyphens of the form 8-4-4-4-4-12, giving a total of 36 characters (32 alphanumeric characters and four hyphens).
+              schema:
+                type: string
+                default: 123e4567-e89b-12d3-a456-426655440000
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error401'
+              examples:
+                response:
+                  value: |-
+                    {
+                      "status": "401.api-name.1011",
+                      "message": "Invalid request, you do not have permissions to execute this operation.",
+                      "folio": "7226d641-901aed",
+                      "warning": "Proper use of the application is recommended, any improper use will be sanctioned.",
+                      "info": "https://baz-developer.bancoazteca.com.mx/info#401.api-name.1011",
+                      "details": []
+                    }
+        '404':
+          description: Not found
+          headers:
+            x-id-interaction:
+              description: RFC4122 Unique correlation identifier. In its canonical textual representation the sixteen octets of a UUID are represented as 32 hexadecimal digits (base 16) shown in five groups separated by hyphens of the form 8-4-4-4-4-12, giving a total of 36 characters (32 alphanumeric characters and four hyphens).
+              schema:
+                type: string
+                default: 123e4567-e89b-12d3-a456-426655440000
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error404'
+              examples:
+                response:
+                  value: |-
+                    {
+                      "status": "404.api-name.1005",
+                      "message": "Registration not found.",
+                      "folio": "0e9f2972-b215-45f5-b1d2-05815c0b4937",
+                      "warning": "Proper use of the application is recommended, any improper use will be sanctioned.",
+                      "info": "https://baz-developer.bancoazteca.com.mx/info#404.api-name.1005",
+                      "details": []
+                    }
+        '500':
+          description: Internal server error
+          headers:
+            x-id-interaction:
+              description: RFC4122 Unique correlation identifier. In its canonical textual representation the sixteen octets of a UUID are represented as 32 hexadecimal digits (base 16) shown in five groups separated by hyphens of the form 8-4-4-4-4-12, giving a total of 36 characters (32 alphanumeric characters and four hyphens).
+              schema:
+                type: string
+                default: 123e4567-e89b-12d3-a456-426655440000
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error500'
+              examples:
+                response:
+                  value: |-
+                    {
+                      "status": "500.api-name.1001",
+                      "message": "Internal server error.",
+                      "folio": "0e9f2972-b215-45f5-b1d2-05815c0b4937",
+                      "warning": "Proper use of the application is recommended, any improper use will be sanctioned.",
+                      "info": "https://baz-developer.bancoazteca.com.mx/info#500.api-name.1001",
+                      "details": []
+                    }
+      x-amazon-apigateway-integration:
+        httpMethod: POST
+        uri: INTEGRATION_URI
+        credentials: arn:aws:iam::ACCOUNT_ID:role/ApigatewayRole
+        responses:
+          default:
+            statusCode: '200'
+        passthroughBehavior: when_no_match
+        contentHandling: CONVERT_TO_TEXT
+        type: aws
+components:
+  schemas:
+    request:
+      type: object
+      properties:
+        FieldA:
+          type: string
+          description: ID of FieldA
+          example: id_10000
+        FieldB:
+          type: string
+          description: Id of FieldB
+          example: id_00001
+        FieldC:
+          type: string
+          description: Content of the request in base 64
+          example: YWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYQo=
+    error400:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Error code
+          example: 400.api-name.0001
+        message:
+          type: string
+          description: Error description
+          example: Incorrect input parameters, please validate your information.
+        folio:
+          type: string
+          description: Transaction folio number
+          example: 0e9f2972-b215-45f5-b1d2-05815c0b4937
+        warning:
+          type: string
+          description: Warning message about data usage
+          example: Proper use of the application is recommended, any improper use will be sanctioned.
+        info:
+          type: string
+          description: Help routes to attend to the error
+          example: https://baz-developer.bancoazteca.com.mx/info#400.api-name.0001
+        details:
+          type: array
+          items:
+            type: string
+            example: []
+    error401:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Error code
+          example: 401.api-name.1011
+        message:
+          type: string
+          description: Error description
+          example: Invalid request, you do not have permissions to execute this operation.
+        folio:
+          type: string
+          description: Transaction folio number
+          example: 7226d641-901aed
+        warning:
+          type: string
+          description: Warning message about data usage
+          example: Proper use of the application is recommended, any improper use will be sanctioned.
+        info:
+          type: string
+          description: Help routes to attend to the error
+          example: https://baz-developer.bancoazteca.com.mx/info#401.api-name.1011
+        details:
+          example: []
+    error404:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Error code
+          example: 404.api-name.1005
+        message:
+          type: string
+          description: Error description
+          example: Registration not found.
+        folio:
+          type: string
+          description: Transaction folio number
+          example: 0e9f2972-b215-45f5-b1d2-05815c0b4937
+        warning:
+          type: string
+          description: Warning message about data usage
+          example: Proper use of the application is recommended, any improper use will be sanctioned.
+        info:
+          type: string
+          description: Help routes to attend to the error
+          example: https://baz-developer.bancoazteca.com.mx/info#404.api-name.1005
+        details:
+          type: array
+          items:
+            type: string
+            example: null
+    error500:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Error code
+          example: 500.api-name.1001
+        message:
+          type: string
+          description: Error description
+          example: Internal server error.
+        folio:
+          type: string
+          description: Transaction folio number
+          example: 0e9f2972-b215-45f5-b1d2-05815c0b4937
+        warning:
+          type: string
+          description: Warning message about data usage
+          example: Proper use of the application is recommended, any improper use will be sanctioned.
+        info:
+          type: string
+          description: Help routes to attend to the error
+          example: https://baz-developer.bancoazteca.com.mx/info#500.api-name.1001
+        details:
+          type: array
+          items:
+            type: string
+            example: []

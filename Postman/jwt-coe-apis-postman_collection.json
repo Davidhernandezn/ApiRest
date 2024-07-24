@@ -1,0 +1,104 @@
+{
+	"info": {
+		"_postman_id": "1c8eda56-ae24-4783-9b5a-38d48eb3e414",
+		"name": "jwt-coe-apis",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25170646",
+		"_collection_link": "https://solar-satellite-389235.postman.co/workspace/Team-Workspace~5095a172-ac38-46c7-8392-ed901cdf0195/collection/25170646-1c8eda56-ae24-4783-9b5a-38d48eb3e414?action=share&source=collection_link&creator=25170646"
+	},
+	"item": [
+		{
+			"name": "get token",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-privatekey",
+						"value": "MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDIamRQnqbZYubhYwe2mzNx3dPGMs4kkNFWe/gYDuVE5zPfEJ73giMITOh9WRp+CoxjAIoq2MUclnMa9Xo97f2NpwGnhrlhlG/n/dmCqcSjmyWU1Ns5uUsKdKKJfNjH6yUpiBw+vjMYVJE5B6RJ0SMMJGZ+K7Ioqui62wkI1hcmJPxGtaX+ObLJPgWfqRKdPpA/h+9DuOEjnlP4H9zmFN5imGnB7l1fWZgmvazCPLRtJlhDBIZdST9buOxOkVCMzx5Ptb6FAkdkpU4VOe2cQLtR1FQ3EY3pDaSt7sjuU5VEReP39sf6xugmTbpW7sbWm/dAcvsL+n39IGM7y5Zf5NuNAgMBAAECggEAGKUUnuFTjSnfUFn4Kdld8yOfFiFLPi3cwDDQakzyno170HNfyPnkyvGCKV/apSMw7j+zvd8YJhLOJsOG+7SXWGLwDiTACSLSvAl4RNwRhTjf3zRpnOiPNMLw9c03byYYVMobBxAmglhr30J0Tmt8TtLvE5bV+rBBnDCxJLgG8rajqUAF1XSi/Wv5U5c8IlS+EEnTrT9sksvD0wjo1T8QYpTlKuuJYfpsA/wVW9qXvs/TlcQSrRd9dmPJDWW0GELQL7q+IWgIC4IjQ2+8Bu/P4uPVDshj7lG2ut9FDNR4Ue3r9fDgmKoKWAR2Yb64czgA0Q0ZS9FEoFGXS81mMGc/dQKBgQD4Yr6N+Flf8fYUb27Iz3yLr75/6fB24dPPuteZco35c20VFv3FA0vPM2vTcLNTIe8y4IxLOiwKO3q+3pWWttquMrxwVgZiqLhKOfu5colJqef2W92QXVg7FnszSP17t5AKKVoP01cL4Rxm7SpcI+OT1kCLFreQpakTWLGHvoe4PwKBgQDOjzFJNn6hPKWIL0nk3bVMirUziJIR0HCx9OWKMEg7cY8FAVH6sJ7T1UxHa6ZMsl9RK7dmJInMBFg+PFcJaPg0L48d9VsUvyj++l+bSPKIqe75G4vU7TV9hZljY6j4yVfsTJGFT8p84D9SY9sHHU/IXVWnjP0HRo9OswSltuMZMwKBgQDZhRgdml0isfHwCXo6b8JBTkIFISkN40ysAZNn9TMyPoxLyNuqGe3c4cpO28afSfuBUbZq9uG0gExJNQJJf47YuOPfeOaUpe7mSgsRZ6WlFh9m1yKcl7J55IE183jRTHre+0G81DbJ13UZCh9rm55kTGAvrlBJY1pC8AxgtVGD3wKBgQCAxeJrCy8so9tqqFh/9vwk6MCIjRbLRlBLkSpc2Tbe4C/SZf1OtTd/RpWUXPdDD1y/BOsEIblKWFcPDZ0RP8ClABVQDvsmVvpe44YhD/wr2Q0jfdnR98QGKfjzblkUKKnIpf9+xbyt1zuCyL/ukoZ/mjhhCVNhasrCvHYkPX0c4wKBgAZdqemXSjyq9aEKAN8x+PrmH1QMtY5hktQ7O0K0i4l2E7g4BUQmk+W8CLEdBYt5OCwTULwBWUHIQnRIcdnxdnk79VDpQleWF7yHbu0DU5YnTj7e8F7TQVPGQAMzSTt1XKmOBCMUdmAvHdzWB/SBDYjEYB1/gl9HfIzIgDQhkiPu",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://qa.apibaz.com/jwt/v1/generate",
+					"protocol": "https",
+					"host": [
+						"qa",
+						"apibaz",
+						"com"
+					],
+					"path": [
+						"jwt",
+						"v1",
+						"generate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "verify token",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJraWQiOiJvcHRpb25hbC11bmlxdWUtaWRlbnRpZmllci1mb3ItcHJpdmF0ZWtleS1oZXJlIiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJBRVFUNGJONG5ERTlxamdoM0U0VHVJRk5kQWZDVzJ0cXNcL1AzcDROR25jcUlWM1psMitEbEkrekt6NFNocnFaNnA3UUJPOTY2dHUxT1pkTmlqSmhYWFhsdWNSclM0Z0NwbU1cL2RIOTdFbG80Y1wvdUdzeTBpVSt1NzZ1ZnJWcVA4UTRNSVVKRHdYM1AzdE9ZZklUVGVSU1VCR04xVzFxUGVaeitJVWNXV0c4NGpvcEx4NGRFVWdcL0ZtVk4wdUgyOVNmTjk4RnJpREdTUmVHQTRSS0lxTlh3UnpCd2owTWZINkJJdEFId1p3UGk0Q081cFFMN1grNElhSUU0WGF2eVk5ZEd6dmVkVFwvWk12Q0JockU5d2Q3cGt4OVVwWWpPUkdqZXBaTTYyYUNTa3VJTW8yRkF6M05mZVFZTnVWbVYrbENFdVBWa240VjFSU0VsTnVNa0xqUHNuUT09IiwiZXhwIjoxNjY0ODEzNTUyLCJpYXQiOjE2NjQ4MTMyNTIsImp0aSI6IjBjZjUyYzVjLTM0NWQtNGM5Yi05ZGVjLThlMWY1MzdiZDMzNSJ9.Ks3uGb6Bk-KgUs6nO1Udmgk7Ep1HLKM2aqR5nyDe5vdLKnHbPOlhPpgmNE3M_HZsJqoP3J9DnOAhzs6e68hBym9a1HerBlwvrafY736otCq25RbnVBaWG4_d4aRxGPbf9fZQh2ixRZE_n8Og4Ry962c5wh8fR9TvhNGLBKUnLomvEk1W-hyrbpk4Sj55GMB-TiE9xPUWkRWfvQHgxO7eFbDF-d725HL63Bk9XJXDE4kPZ6iWTyYGnYBtaYPlTCCttRDG48W03Gv6o0gdoQM-Cns-GLFod9pceXmjgzokRrdxNDO8ma-cBw5rJQS2xWBtCU4deVm1n2chs0KMQrim8w",
+						"type": "text"
+					},
+					{
+						"key": "x-publickey",
+						"value": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyGpkUJ6m2WLm4WMHtpszcd3TxjLOJJDRVnv4GA7lROcz3xCe94IjCEzofVkafgqMYwCKKtjFHJZzGvV6Pe39jacBp4a5YZRv5/3ZgqnEo5sllNTbOblLCnSiiXzYx+slKYgcPr4zGFSROQekSdEjDCRmfiuyKKroutsJCNYXJiT8RrWl/jmyyT4Fn6kSnT6QP4fvQ7jhI55T+B/c5hTeYphpwe5dX1mYJr2swjy0bSZYQwSGXUk/W7jsTpFQjM8eT7W+hQJHZKVOFTntnEC7UdRUNxGN6Q2kre7I7lOVREXj9/bH+sboJk26Vu7G1pv3QHL7C/p9/SBjO8uWX+TbjQIDAQAB",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://qa.apibaz.com/jwt/v1/verify",
+					"protocol": "https",
+					"host": [
+						"qa",
+						"apibaz",
+						"com"
+					],
+					"path": [
+						"jwt",
+						"v1",
+						"verify"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Encryption keys",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJraWQiOiJvcHRpb25hbC11bmlxdWUtaWRlbnRpZmllci1mb3ItcHJpdmF0ZWtleS1oZXJlIiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJKVTVzRkI4UnlaOXZxdWUrdGNTN2x5Vjc5bnpsQkEyaDQ5NGpOTlg4dUNUSUl5djRicFhiV3RZVFVVdVIrNVpXVnRNb1pDRlM2dU5kbGthK0VsaTYyY1ZsQWg5R1ZHdmlJaFMzYVloNHgzRFE1cVVsZGlCdFdKRkI4WEZVN0QwNGNyc3ZTRU4rR3ZmdGdHb0ptcmN6R05CQTBXSVQ0R3ErNStQXC9mSnNNeGhlc3V1ZDJlbnhyazBZQW1vNkxLR0hPM28zOGZcLzlNa0FcL0p1XC9QM2ZINnRReEViUVpTYStLV3NUS0EzOEZ6bVhXeEZcL29pMTlaXC9ORmptZUhEaU1XMWptdUpJcGNlVngreG91QXpBejIySWJkYzBtdm13dFBuRTNcL0dhT1JKRSt6MFhrQzVVVnRLWlV4T0lsTWhFRmFkaGJEbkE1ZGJ6cEZWc3MyaXo5VytyU3R3PT0iLCJleHAiOjE2ODIxMzI2OTgsImlhdCI6MTY4MjEzMjM5OCwianRpIjoiMmIxM2RmNTYtZGJhMy00YjMwLTgzYzQtOTg1MTE4M2VjZGI2In0.GARCqP5afWqzVH_w6lglr7QzXp5wq3FurVUQJifWyqoXNjH0_e0Zyw4EAY8poa5xu_qz_HFgVTeJbZWuMcrExaJnLwkZ2zMRHr0IqB3zny9CeRl0jAo2RdYsZcEQ8JCFoUcYgnJN46Qk34RNTA18zPdjrD9ETRVEi4Uq1U_1Tzaw1c_0Ev77ydKVBDuggrDFgyvrsW0VUkUKPoDLXK7_GXWH0WfcEFc1hX_FEVstpmj-IHxWml_mbz3ehevLNRb8ZgliYafLHjh6JZXwIwGLaolma3kxNC7juNXsglHxcxiPk5pvG_c-o6iF2WJ33xoVWchfoo_EZFKP8adqJKu4zw",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://10.50.53.35:10119/afore-azteca/security/v1/applications/keys",
+					"protocol": "http",
+					"host": [
+						"10",
+						"50",
+						"53",
+						"35"
+					],
+					"port": "10119",
+					"path": [
+						"afore-azteca",
+						"security",
+						"v1",
+						"applications",
+						"keys"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
