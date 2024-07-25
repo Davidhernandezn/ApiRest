@@ -21,10 +21,6 @@ public class PersonaServiceImpl implements PersonaService {
         return personaRepository.findAll();
     }
 
-    @Override
-    public Optional<Persona> getPersonaById(Long id) {
-        return personaRepository.findById(id);
-    }
 
     @Override
     public Persona savePersona(Persona persona) {
@@ -48,4 +44,11 @@ public class PersonaServiceImpl implements PersonaService {
             return personaRepository.save(personaDetails);
         });
     }
+
+
+	@Override
+	public Persona findById(Long id) {
+		// TODO Auto-generated method stub
+		return personaRepository.findById(id).orElse(null);
+	}
 }

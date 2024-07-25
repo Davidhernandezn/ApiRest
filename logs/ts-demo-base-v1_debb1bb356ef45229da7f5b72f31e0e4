@@ -1,0 +1,31 @@
+{"log_data":{"fecha":"2024-07-24 17:27:15.65","Level":"INFO","Mensaje":" HV000001: Hibernate Validator 8.0.1.Final","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-24 17:27:15.77","Level":"INFO","Mensaje":" Starting PetardoCoreApplication using Java 21.0.3 with PID 14452 (C:\\Users\\david\\Documents\\Capacitaciones\\Backend\\GSBackend\\ts-demo-base-v1\\ts-demo-base-v1\\target\\classes started by Davidhernandezn in C:\\Users\\david\\Documents\\Capacitaciones\\Backend\\GSBackend\\ts-demo-base-v1\\ts-demo-base-v1)","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-24 17:27:15.78","Level":"INFO","Mensaje":" The following 1 profile is active: \"local\"","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-24 17:27:18.42","Level":"INFO","Mensaje":" Bootstrapping Spring Data JPA repositories in DEFAULT mode.","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-24 17:27:18.57","Level":"INFO","Mensaje":" Finished Spring Data repository scanning in 133 ms. Found 1 JPA repository interface.","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-24 17:27:20.33","Level":"INFO","Mensaje":" Tomcat initialized with port 8084 (http)","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-24 17:27:20.36","Level":"INFO","Mensaje":" Initializing ProtocolHandler [\"http-nio-8084\"]","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-24 17:27:20.36","Level":"INFO","Mensaje":" Starting service [Tomcat]","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-24 17:27:20.37","Level":"INFO","Mensaje":" Starting Servlet engine: [Apache Tomcat/10.1.19]","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-24 17:27:20.53","Level":"INFO","Mensaje":" Initializing Spring embedded WebApplicationContext","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-24 17:27:20.53","Level":"INFO","Mensaje":" Root WebApplicationContext: initialization completed in 4623 ms","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-24 17:27:20.83","Level":"INFO","Mensaje":" HikariPool-1 - Starting...","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-24 17:27:21.22","Level":"INFO","Mensaje":" HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:apigspersonas user=ROOT","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-24 17:27:21.22","Level":"INFO","Mensaje":" HikariPool-1 - Start completed.","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-24 17:27:21.25","Level":"INFO","Mensaje":" H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:apigspersonas'","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-24 17:27:21.71","Level":"INFO","Mensaje":" HHH000204: Processing PersistenceUnitInfo [name: default]","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-24 17:27:21.82","Level":"INFO","Mensaje":" HHH000412: Hibernate ORM core version 6.4.4.Final","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-24 17:27:21.94","Level":"INFO","Mensaje":" HHH000026: Second-level cache disabled","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-24 17:27:22.44","Level":"INFO","Mensaje":" No LoadTimeWeaver setup: ignoring JPA class transformer","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-24 17:27:22.53","Level":"WARN","Mensaje":" HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-24 17:27:24.23","Level":"INFO","Mensaje":" HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-24 17:27:24.32","Level":"INFO","Mensaje":" Initialized JPA EntityManagerFactory for persistence unit 'default'","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-24 17:27:25.17","Level":"WARN","Mensaje":" spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-24 17:27:25.25","Level":"WARN","Mensaje":" \r\n\r\nUsing generated security password: ca38c48e-ec5a-4ca7-b2c5-e0181081cb49\r\n\r\nThis generated password is for development use only. Your security configuration must be updated before running your application in production.\r\n","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-24 17:27:25.62","Level":"WARN","Mensaje":" Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration': Injection of autowired dependencies failed","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-24 17:27:25.62","Level":"INFO","Mensaje":" Closing JPA EntityManagerFactory for persistence unit 'default'","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-24 17:27:25.63","Level":"INFO","Mensaje":" HikariPool-1 - Shutdown initiated...","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-24 17:27:25.64","Level":"INFO","Mensaje":" HikariPool-1 - Shutdown completed.","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-24 17:27:25.64","Level":"INFO","Mensaje":" Stopping service [Tomcat]","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-24 17:27:25.68","Level":"INFO","Mensaje":" \r\n\r\nError starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-24 17:27:25.72","Level":"ERROR","Mensaje":" Application run failed","servicios":[],"TiempoTotal":1}}

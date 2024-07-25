@@ -27,33 +27,25 @@ public class PersonaController {
     public List<Persona> getAllPersonas() {
         return personaService.getAllPersonas();
     }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Persona> getPersonaById(@PathVariable Long id) {
-        return personaService.getPersonaById(id)
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+    
+    @GetMapping("/persona/{id}")
+    public Persona showById(@PathVariable Long id) {
+        return personaService.findById(id);
     }
-
-    @PostMapping("/save")
-    public Persona createPersona(@RequestBody Persona persona) {
+    
+    @PostMapping("/persona")
+    public Persona create(@RequestBody Persona persona) {
         return personaService.savePersona(persona);
     }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Persona> updatePersona(@PathVariable Long id, @RequestBody Persona personaDetails) {
-        return personaService.getPersonaById(id)
-                .map(persona -> ResponseEntity.ok(personaService.updatePersona(id, personaDetails)))
-                .orElseGet(() -> ResponseEntity.notFound().build());
+    
+    @PutMapping("/persona")
+    public Persona updatePerson(@RequestBody Persona persona) {
+        return personaService.savePersona(persona);
     }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deletePersona(@PathVariable Long id) {
-        return personaService.getPersonaById(id)
-                .map(persona -> {
-                    personaService.deletePersona(id);
-                    return ResponseEntity.noContent().build();
-                })
-                .orElseGet(() -> ResponseEntity.notFound().build());
+    
+    @DeleteMapping("/persona/{id}")
+    public void delete(@PathVariable Long id) {
+    	Persona personaDelete = personaService.findById(id);
+        personaService.deletePersona(id);
     }
 }

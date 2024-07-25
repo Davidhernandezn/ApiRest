@@ -9,7 +9,7 @@ public interface PersonaService {
 
     List<Persona> getAllPersonas();
 
-    Optional<Persona> getPersonaById(Long id);
+    Persona findById(Long id);
 
     Persona savePersona(Persona persona);
 
