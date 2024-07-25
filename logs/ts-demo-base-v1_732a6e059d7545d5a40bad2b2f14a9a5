@@ -32,3 +32,8 @@
 {"log_data":{"fecha":"2024-07-25 15:50:20.50","Level":"INFO","Mensaje":" Initializing Spring DispatcherServlet 'dispatcherServlet'","servicios":[],"TiempoTotal":1}}
 {"log_data":{"fecha":"2024-07-25 15:50:20.50","Level":"INFO","Mensaje":" Initializing Servlet 'dispatcherServlet'","servicios":[],"TiempoTotal":1}}
 {"log_data":{"fecha":"2024-07-25 15:50:20.50","Level":"INFO","Mensaje":" Completed initialization in 4 ms","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-25 16:17:05.90","Level":"INFO","Mensaje":" Application shutdown requested.","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-25 16:17:05.91","Level":"INFO","Mensaje":" Stopping ProtocolHandler [\"http-nio-8084\"]","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-25 16:17:05.93","Level":"INFO","Mensaje":" Closing JPA EntityManagerFactory for persistence unit 'default'","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-25 16:17:05.94","Level":"INFO","Mensaje":" HikariPool-1 - Shutdown initiated...","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-25 16:17:05.94","Level":"INFO","Mensaje":" HikariPool-1 - Shutdown completed.","servicios":[],"TiempoTotal":1}}

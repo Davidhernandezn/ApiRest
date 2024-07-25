@@ -57,17 +57,19 @@ public class PersonaController {
         }
     }
 
-    @PutMapping("/persona")
+    @PutMapping("/persona/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<?> updatePerson(@RequestBody PersonaDto personaDTO) {
-        Persona personaActual = personaService.findById(personaDTO.getId());
-        if (personaActual == null) {
+    public ResponseEntity<?> updatePerson(@RequestBody PersonaDto personaDTO,@PathVariable Long id) {
+        //Persona personaActual = personaService.findById(personaDTO.getId());
+        Persona personaFindById = personaService.findById(id);
+        if (personaFindById == null) {
             return new ResponseEntity<>(createErrorResponse("Error: no se pudo editar, la persona ID: " + personaDTO.getId() + " no existe."), HttpStatus.NOT_FOUND);
         }
 
         try {
-            BeanUtils.copyProperties(personaActual, personaDTO);
-            Persona updatedPersona = personaService.savePersona(personaActual);
+            personaDTO.setId(id);
+            BeanUtils.copyProperties(personaFindById, personaDTO);
+            Persona updatedPersona = personaService.savePersona(personaFindById);
             return new ResponseEntity<>(personaMapper.toDTO(updatedPersona), HttpStatus.CREATED);
         } catch (DataAccessException exDt) {
             return new ResponseEntity<>(createErrorResponse("Error al actualizar la persona en la base de datos.", exDt), HttpStatus.INTERNAL_SERVER_ERROR);
