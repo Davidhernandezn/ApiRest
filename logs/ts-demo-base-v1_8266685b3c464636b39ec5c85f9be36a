@@ -1,0 +1,29 @@
+{"log_data":{"fecha":"2024-07-25 15:39:05.19","Level":"INFO","Mensaje":" HV000001: Hibernate Validator 8.0.1.Final","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-25 15:39:05.26","Level":"INFO","Mensaje":" Starting PetardoCoreApplication using Java 21.0.3 with PID 15960 (C:\\Users\\david\\Documents\\Capacitaciones\\Backend\\GSBackend\\ts-demo-base-v1\\ts-demo-base-v1\\target\\classes started by Davidhernandezn in C:\\Users\\david\\Documents\\Capacitaciones\\Backend\\GSBackend\\ts-demo-base-v1\\ts-demo-base-v1)","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-25 15:39:05.27","Level":"INFO","Mensaje":" The following 1 profile is active: \"local\"","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-25 15:39:06.83","Level":"INFO","Mensaje":" Bootstrapping Spring Data JPA repositories in DEFAULT mode.","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-25 15:39:06.93","Level":"INFO","Mensaje":" Finished Spring Data repository scanning in 88 ms. Found 1 JPA repository interface.","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-25 15:39:08.02","Level":"INFO","Mensaje":" Tomcat initialized with port 8084 (http)","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-25 15:39:08.04","Level":"INFO","Mensaje":" Initializing ProtocolHandler [\"http-nio-8084\"]","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-25 15:39:08.04","Level":"INFO","Mensaje":" Starting service [Tomcat]","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-25 15:39:08.04","Level":"INFO","Mensaje":" Starting Servlet engine: [Apache Tomcat/10.1.19]","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-25 15:39:08.14","Level":"INFO","Mensaje":" Initializing Spring embedded WebApplicationContext","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-25 15:39:08.14","Level":"INFO","Mensaje":" Root WebApplicationContext: initialization completed in 2805 ms","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-25 15:39:08.31","Level":"INFO","Mensaje":" HikariPool-1 - Starting...","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-25 15:39:08.54","Level":"INFO","Mensaje":" HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:apigspersonas user=ROOT","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-25 15:39:08.55","Level":"INFO","Mensaje":" HikariPool-1 - Start completed.","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-25 15:39:08.56","Level":"INFO","Mensaje":" H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:apigspersonas'","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-25 15:39:08.84","Level":"INFO","Mensaje":" HHH000204: Processing PersistenceUnitInfo [name: default]","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-25 15:39:08.90","Level":"INFO","Mensaje":" HHH000412: Hibernate ORM core version 6.4.4.Final","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-25 15:39:08.95","Level":"INFO","Mensaje":" HHH000026: Second-level cache disabled","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-25 15:39:09.24","Level":"INFO","Mensaje":" No LoadTimeWeaver setup: ignoring JPA class transformer","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-25 15:39:09.30","Level":"WARN","Mensaje":" HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-25 15:39:10.34","Level":"INFO","Mensaje":" HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-25 15:39:10.39","Level":"INFO","Mensaje":" Initialized JPA EntityManagerFactory for persistence unit 'default'","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-25 15:39:10.44","Level":"WARN","Mensaje":" Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'personaController' defined in file [C:\\Users\\david\\Documents\\Capacitaciones\\Backend\\GSBackend\\ts-demo-base-v1\\ts-demo-base-v1\\target\\classes\\com\\gs\\training\\petardocore\\controller\\PersonaController.class]: Failed to instantiate [com.gs.training.petardocore.controller.PersonaController]: Constructor threw exception","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-25 15:39:10.44","Level":"INFO","Mensaje":" Closing JPA EntityManagerFactory for persistence unit 'default'","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-25 15:39:10.45","Level":"INFO","Mensaje":" HikariPool-1 - Shutdown initiated...","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-25 15:39:10.46","Level":"INFO","Mensaje":" HikariPool-1 - Shutdown completed.","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-25 15:39:10.46","Level":"INFO","Mensaje":" Stopping service [Tomcat]","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-25 15:39:10.48","Level":"INFO","Mensaje":" \r\n\r\nError starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-07-25 15:39:10.50","Level":"ERROR","Mensaje":" Application run failed","servicios":[],"TiempoTotal":1}}
