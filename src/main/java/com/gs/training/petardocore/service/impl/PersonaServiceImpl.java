@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.gs.training.petardocore.model.Persona;
 import com.gs.training.petardocore.repository.PersonaRepository;
@@ -17,22 +18,26 @@ public class PersonaServiceImpl implements PersonaService {
     private PersonaRepository personaRepository;
 
     @Override
+	@Transactional(readOnly = true)
     public List<Persona> getAllPersonas() {
         return personaRepository.findAll();
     }
 
 
     @Override
+	@Transactional
     public Persona savePersona(Persona persona) {
         return personaRepository.save(persona);
     }
 
     @Override
-    public void deletePersona(Long id) {
-        personaRepository.deleteById(id);
+	@Transactional
+    public void deletePersona(Persona persona) {
+        personaRepository.delete(persona);
     }
 
     @Override
+	@Transactional
     public Persona updatePersona(Long id, Persona personaDetails) {
         return personaRepository.findById(id).map(persona -> {
             persona.setNombre(personaDetails.getNombre());
@@ -47,6 +52,7 @@ public class PersonaServiceImpl implements PersonaService {
 
 
 	@Override
+	@Transactional(readOnly = true)
 	public Persona findById(Long id) {
 		// TODO Auto-generated method stub
 		return personaRepository.findById(id).orElse(null);
