@@ -19,8 +19,6 @@ public class Persona {
     private String email;
     private String telefono;
     
-    
-    
 	public Persona() {
 	}
 
@@ -35,7 +33,6 @@ public class Persona {
 		this.email = email;
 		this.telefono = telefono;
 	}
-	
 	
 	public Long getId() {
 		return id;
