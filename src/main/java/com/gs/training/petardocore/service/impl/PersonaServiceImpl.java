@@ -8,6 +8,8 @@ import com.gs.training.petardocore.model.Persona;
 import com.gs.training.petardocore.repository.PersonaRepository;
 import com.gs.training.petardocore.service.PersonaService;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @Service
 public class PersonaServiceImpl implements PersonaService {
 
@@ -27,12 +29,15 @@ public class PersonaServiceImpl implements PersonaService {
         return personaRepository.save(persona);
     }
 
-    @Override
-	@Transactional
-    public void deletePersona(Persona persona) {
-        personaRepository.delete(persona);
-    }
 
+    @Override
+   	@Transactional
+	public void deletePersona(Long id) {
+		 Persona persona = personaRepository.findById(id)
+		                .orElseThrow(() -> new EntityNotFoundException("Persona not found with id " + id));
+		        personaRepository.delete(persona);
+	}
+	
     @Override
 	@Transactional
     public Persona updatePersona(Long id, Persona personaDetails) {
@@ -54,4 +59,5 @@ public class PersonaServiceImpl implements PersonaService {
 		// TODO Auto-generated method stub
 		return personaRepository.findById(id).orElse(null);
 	}
+
 }

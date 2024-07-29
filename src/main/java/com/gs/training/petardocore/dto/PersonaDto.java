@@ -1,14 +1,33 @@
 package com.gs.training.petardocore.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 
 public class PersonaDto {
 	    private Long id;
+	    
+	    @NotNull(message = "El nombre es requerido")	    
 	    private String nombre;
+	    
+	    @NotNull(message = "El apellido paterno es requerido")	    
 	    private String apellidoPaterno;
+	    
+	    @NotNull(message = "El apellido materno es requerido")	    
 	    private String apellidoMaterno;
+	    
+	    @NotNull(message = "La edad es requerida")	    
 	    private int edad;
+	    
+	    @NotNull(message = "La ciudad es requerida")	    
 	    private String ciudad;
+	    
+	    @Email(message = "El correo electrónico debe ser válido")
+	    @NotNull(message = "El email es requerido")	    
 	    private String email;
+	    
+	    @NotNull(message = "El telefono es requerido")	
+	    @Pattern(regexp = "\\d{10}", message = "El teléfono debe tener 10 dígitos")
 	    private String telefono;
 	    
 	    public PersonaDto() {

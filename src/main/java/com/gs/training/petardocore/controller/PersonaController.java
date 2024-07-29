@@ -4,12 +4,15 @@ import com.gs.training.petardocore.dto.PersonaDto;
 import com.gs.training.petardocore.mapper.PersonaMapper;
 import com.gs.training.petardocore.model.Persona;
 import com.gs.training.petardocore.service.PersonaService;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.List;
@@ -49,7 +52,7 @@ public class PersonaController {
 
 	@PostMapping("/persona")
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<?> create(@RequestBody PersonaDto personaDTO) {
+	public ResponseEntity<?> create(@Valid @RequestBody PersonaDto personaDTO) {
 		try {
 			Persona persona = personaMapper.toEntity(personaDTO);
 			Persona savedPersona = personaService.savePersona(persona);
@@ -61,6 +64,7 @@ public class PersonaController {
 		}
 	}
 
+	
 	@PutMapping("/persona")
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<?> updatePerson(@RequestBody PersonaDto personaDTO, @RequestParam(required = false) Long id) {
@@ -92,31 +96,23 @@ public class PersonaController {
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
-	@DeleteMapping("/persona")
-	public ResponseEntity<?> delete(@RequestParam(required = false) Long id) {
-		if (id == null) {
-			return new ResponseEntity<>(createErrorResponse("Error: el parámetro ID es requerido."),
-					HttpStatus.BAD_REQUEST);
-		}
-
-		try {
-			Persona personaDelete = personaService.findById(id);
-			if (personaDelete == null) {
-				return new ResponseEntity<>(
-						createErrorResponse("Error: no se pudo eliminar, la persona ID: " + id + " no existe."),
-						HttpStatus.NOT_FOUND);
+	
+	 @DeleteMapping("/persona/{id}")
+	    public ResponseEntity<Void> deletePersona(@RequestParam(required = false) Long id) {
+			if (id == null) {
+			    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Error: el parámetro ID es requerido.");
 			}
+	        try {
+	            personaService.deletePersona(id);
+	            return ResponseEntity.noContent().build();
+	        } catch (EntityNotFoundException ex) {
+	            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Persona not found", ex);
+	        } catch (Exception ex) {
+	            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Internal server error", ex);
+	        }
+	    }
 
-			personaService.deletePersona(personaDelete);
-			return new ResponseEntity<>(createSuccessResponse("La persona fue eliminada con éxito."), HttpStatus.OK);
-		} catch (DataAccessException exDt) {
-			return new ResponseEntity<>(
-					createErrorResponse("Error al realizar la eliminación en la base de datos.", exDt),
-					HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}
-
+	 
 	private Map<String, Object> createErrorResponse(String message) {
 		Map<String, Object> response = new HashMap<>();
 		response.put("mensaje", message);
