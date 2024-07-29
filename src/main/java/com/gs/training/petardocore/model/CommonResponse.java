@@ -9,17 +9,17 @@ import lombok.Data;
 public class CommonResponse<T> {
 private String mensaje;
 private String folio;
-private T data;
+private T resultado;
 
     public CommonResponse() {
-        this.setMensaje("Operación exitosa"); // Mensaje predeterminado
+        this.setMensaje("Operación exitosa");
         this.setFolio(UUID.randomUUID().toString());
     }
 
-    public CommonResponse(String mensaje, T data) {
+    public CommonResponse(String mensaje, T resultado) {
         this.setMensaje(mensaje);
         this.setFolio(UUID.randomUUID().toString());
-        this.setData(data);
+        this.setResultado(resultado);
     }
 
 	public String getMensaje() {
@@ -38,12 +38,12 @@ private T data;
 		this.folio = folio;
 	}
 
-	public T getData() {
-		return data;
+	public T getResultado() {
+		return resultado;
 	}
 
-	public void setData(T data) {
-		this.data = data;
+	public void setResultado(T resultado) {
+		this.resultado = resultado;
 	}
 }
 

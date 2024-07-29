@@ -13,7 +13,6 @@ import com.gs.ftt.log.MainLog;
  * @author: CoE Microservicios
  */
 @SpringBootApplication 
-
 public class PetardoCoreApplication {
 
 	/**
@@ -22,7 +21,6 @@ public class PetardoCoreApplication {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-
 		MainLog.generateUID();
 		SpringApplication.run(PetardoCoreApplication.class, args);
 	}
