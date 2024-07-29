@@ -2,11 +2,9 @@ package com.gs.training.petardocore.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.gs.training.petardocore.enums.EnumHttpMessages;
 import com.gs.training.petardocore.util.Folio;
-
 import lombok.Data;
 
 /**
@@ -50,7 +48,7 @@ public class GenericResponse {
 		this.message = EnumHttpMessages.EOK_MESSAGE;
 		this.transactionId = Folio.HOLDER.get();
 		this.data = data;
-	}
+	}	
 
 	public GenericResponse(List<String> details, EnumHttpMessages enumHttpMessages) {
 		

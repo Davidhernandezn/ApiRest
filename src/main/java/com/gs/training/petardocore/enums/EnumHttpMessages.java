@@ -92,4 +92,9 @@ public enum EnumHttpMessages {
 
 		return result.toString();
 	}
+
+	public String getStatus() {
+		// TODO Auto-generated method stub
+		return status;
+	}
 }

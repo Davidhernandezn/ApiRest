@@ -1,7 +1,10 @@
 package com.gs.training.petardocore.controller;
 
+import com.gs.ftt.log.LogMonitor;
 import com.gs.training.petardocore.dto.PersonaDto;
 import com.gs.training.petardocore.mapper.PersonaMapper;
+import com.gs.training.petardocore.model.CommonResponse;
+import com.gs.training.petardocore.model.GenericResponse;
 import com.gs.training.petardocore.model.Persona;
 import com.gs.training.petardocore.service.PersonaService;
 import jakarta.persistence.EntityNotFoundException;
@@ -28,6 +31,9 @@ public class PersonaController {
 
 	@Autowired
 	private PersonaMapper personaMapper;
+	
+	private static final LogMonitor LOGGER = new LogMonitor(PetardoCoreController.class);
+
 
 	@GetMapping("/personas")
 	@ResponseStatus(HttpStatus.OK)
@@ -50,7 +56,9 @@ public class PersonaController {
 		return new ResponseEntity<>(personaMapper.toDTO(persona), HttpStatus.OK);
 	}
 
+	/**
 	@PostMapping("/persona")
+	 * @return 
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<?> create(@Valid @RequestBody PersonaDto personaDTO) {
 		try {
@@ -62,9 +70,18 @@ public class PersonaController {
 					createErrorResponse("Error al realizar la inserción en la base de datos.", exDt),
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+	}**/
+	
+	@PostMapping("/persona")
+	@ResponseStatus(HttpStatus.CREATED)
+	public ResponseEntity<?> create(@Valid @RequestBody PersonaDto personaDto) {
+		LOGGER.info("POST banco-azteca/afore/personas/v1/personas request= {}", personaDto);
+		CommonResponse<Persona> response = personaService.savePersona(personaDto);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
+		
 	}
 
-	
+	/**
 	@PutMapping("/persona")
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<?> updatePerson(@RequestBody PersonaDto personaDTO, @RequestParam(required = false) Long id) {
@@ -95,7 +112,7 @@ public class PersonaController {
 			return new ResponseEntity<>(createErrorResponse("Error al copiar las propiedades de la persona.", e),
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-	}
+	}**/
 	
 	 @DeleteMapping("/persona/{id}")
 	    public ResponseEntity<Void> deletePersona(@RequestParam(required = false) Long id) {

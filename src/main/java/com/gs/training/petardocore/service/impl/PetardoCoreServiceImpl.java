@@ -2,11 +2,7 @@ package com.gs.training.petardocore.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-
-
-
 import org.springframework.stereotype.Service;
-
 import com.gs.training.petardocore.constant.PetardoCoreConstants;
 import com.gs.training.petardocore.dto.PetardoCoreDto;
 import com.gs.training.petardocore.dto.registry.PetardoCoreRequestRegistry;

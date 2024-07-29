@@ -1,7 +1,12 @@
 package com.gs.training.petardocore.service;
 
 import java.util.List;
+
+import com.gs.training.petardocore.dto.PersonaDto;
+import com.gs.training.petardocore.model.CommonResponse;
 import com.gs.training.petardocore.model.Persona;
+
+import jakarta.validation.Valid;
 
 public interface PersonaService {
 
@@ -23,7 +28,7 @@ public interface PersonaService {
      * @param persona the Persona to saved.
      * @return the saved Persona.
      */
-    Persona savePersona(Persona persona);
+    //Persona savePersona(@Valid Persona persona);
 
     /**
      * Deletes an existing Persona. 
@@ -39,4 +44,8 @@ public interface PersonaService {
      * @return the updated Persona.
      */
     Persona updatePersona(Long id, Persona personaDetails);
+
+	//Persona savePersona(PersonaDto persona);
+	CommonResponse<Persona> savePersona(PersonaDto personaDto);
+
 }
