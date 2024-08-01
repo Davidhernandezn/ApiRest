@@ -1,6 +1,5 @@
 package com.gs.training.petardocore.model;
 
-import java.util.List;
 import java.util.UUID;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
@@ -25,10 +24,6 @@ public class CommonResponse<T> {
         this.setFolio(UUID.randomUUID().toString());
         this.setResultado(resultado);
     }
-
-    public CommonResponse(String string, String string2, String string3, String string4, List<String> of) {
-		// TODO Auto-generated constructor stub
-	}
 
 	public String getMensaje() {
         return mensaje;

@@ -1,16 +1,13 @@
 package com.gs.training.petardocore.exception;
 
 import java.util.List;
-
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.server.ResponseStatusException;
-
 import com.google.gson.Gson;
 import com.gs.training.petardocore.constant.PetardoCoreConstants;
 import com.gs.training.petardocore.enums.EnumHttpMessages;
 import com.gs.training.petardocore.model.GenericResponse;
-
 import com.gs.ftt.log.LogMonitor;
 
 /**
@@ -57,7 +54,7 @@ public final class ExceptionsManager {
 		GenericResponse response = new GenericResponse(genericException.getDetails(),
 				genericException.getEnumHttpMessages());
 
-		return new ResponseEntity<>(response, genericException.getEnumHttpMessages().getHttpStatus());
+		return new ResponseEntity<GenericResponse>(response, genericException.getEnumHttpMessages().getHttpStatus());
 	}
 
 	public static GenericException parseResponseStatusExceptionToGenericException(
@@ -68,7 +65,7 @@ public final class ExceptionsManager {
 		try {
 			
 			List<String> details = new Gson().fromJson(responseStatusException.getReason(), GenericResponse.class)
-					.getDetails();
+					.getDetalles();
 
 			HttpStatusCode code = responseStatusException.getStatusCode();
 			int codeResponse = code.value();

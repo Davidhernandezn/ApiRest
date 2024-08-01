@@ -3,6 +3,7 @@ package com.gs.training.petardocore.service;
 import java.util.List;
 import com.gs.training.petardocore.dto.PersonaDto;
 import com.gs.training.petardocore.model.CommonResponse;
+import com.gs.training.petardocore.model.GenericResponse;
 import com.gs.training.petardocore.model.Persona;
 
 public interface PersonaService {
@@ -18,8 +19,7 @@ public interface PersonaService {
      * @param Long id 
      * @return the Persona with the specified ID.
      */
-    //Persona findById(Long id);
-    CommonResponse<Persona> findById(Long id);
+    GenericResponse<Persona> findById(Long id);
 
 
     /**

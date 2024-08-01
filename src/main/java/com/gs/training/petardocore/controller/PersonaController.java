@@ -2,10 +2,9 @@ package com.gs.training.petardocore.controller;
 
 import com.gs.ftt.log.LogMonitor;
 import com.gs.training.petardocore.dto.PersonaDto;
-import com.gs.training.petardocore.enums.EnumHttpMessages;
-import com.gs.training.petardocore.exception.EMensajeException;
 import com.gs.training.petardocore.mapper.PersonaMapper;
 import com.gs.training.petardocore.model.CommonResponse;
+import com.gs.training.petardocore.model.GenericResponse;
 import com.gs.training.petardocore.model.Persona;
 import com.gs.training.petardocore.service.PersonaService;
 import jakarta.persistence.EntityNotFoundException;
@@ -15,9 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -31,6 +28,10 @@ public class PersonaController {
 	private PersonaMapper personaMapper;
 
 	private static final LogMonitor LOGGER = new LogMonitor(PetardoCoreController.class);
+	
+	 public PersonaController(PersonaService personaService) {
+	        this.personaService = personaService;
+	    }
 
 	@GetMapping("/personas")
 	@ResponseStatus(HttpStatus.OK)
@@ -39,11 +40,18 @@ public class PersonaController {
 	}
 
 	@GetMapping("/persona/")
-	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<?> showById(@RequestParam(required = false) Long id) {
-	    CommonResponse<Persona> response = personaService.findById(id);
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
-	}
+	@ResponseStatus(HttpStatus.OK )
+    public ResponseEntity<GenericResponse> findById(@RequestParam Long id) {
+        try {
+        	GenericResponse response = personaService.findById(id);
+            return ResponseEntity.ok(response);
+        } catch (RuntimeException ex) {	
+            // Manejar excepciones lanzadas desde el servicio
+            throw new ResponseStatusException(
+                HttpStatus.INTERNAL_SERVER_ERROR,
+                ex.getMessage(),
+                ex);
+        }}
 	/**
 	   public ResponseEntity<?> showById(@RequestParam(required = false) Long id) {
         Persona response = personaService.findById(id);
@@ -80,25 +88,5 @@ public class PersonaController {
 		} catch (Exception ex) {
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Internal server error", ex);
 		}
-	}
-
-	private Map<String, Object> createErrorResponse(String message) {
-		Map<String, Object> response = new HashMap<>();
-		response.put("mensaje", message);
-		return response;
-	}
-
-	private Map<String, Object> createErrorResponse(String message, Exception ex) {
-		Map<String, Object> response = new HashMap<>();
-		response.put("mensaje", message);
-		response.put("error",
-				ex.getMessage().concat(": ").concat(ex.getCause() != null ? ex.getCause().getMessage() : ""));
-		return response;
-	}
-
-	private Map<String, Object> createSuccessResponse(String message) {
-		Map<String, Object> response = new HashMap<>();
-		response.put("mensaje", message);
-		return response;
 	}
 }

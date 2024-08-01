@@ -1,18 +1,15 @@
 package com.gs.training.petardocore.service.impl;
 
 import java.util.List;
-import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-//import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
-
 import com.gs.training.petardocore.dto.PersonaDto;
+import com.gs.training.petardocore.enums.EnumHttpMessages;
 import com.gs.training.petardocore.exception.ExceptionsManager;
 import com.gs.training.petardocore.exception.GenericException;
 import com.gs.training.petardocore.mapper.PersonaMapper;
@@ -21,19 +18,13 @@ import com.gs.training.petardocore.model.GenericResponse;
 import com.gs.training.petardocore.model.Persona;
 import com.gs.training.petardocore.repository.PersonaRepository;
 import com.gs.training.petardocore.service.PersonaService;
-
 import jakarta.persistence.EntityNotFoundException;
-//import jakarta.validation.Valid;
-import jakarta.validation.Valid;
 
 @Service
 public class PersonaServiceImpl implements PersonaService {
 
     @Autowired
     private PersonaRepository personaRepository;
-    
-	//@Autowired
-	//private PersonaService personaService;
 
 	@Autowired
 	private PersonaMapper personaMapper;
@@ -85,6 +76,40 @@ public class PersonaServiceImpl implements PersonaService {
 
 	@Override
 	@Transactional(readOnly = true)
+	public GenericResponse<Persona> findById(Long id) {
+        try {
+            Persona persona = personaRepository.findById(id).orElse(null);
+            if (persona == null) {
+                // Crear GenericException para el caso en que la persona no se encuentre
+                throw new GenericException(
+                    List.of("Persona no encontrada :/"),
+                    EnumHttpMessages.E404
+                );
+            }
+            // Crear una respuesta exitosa con los datos de la persona
+            return new GenericResponse<Persona>(persona);
+            //return new GenericResponse<Persona>();
+
+        } catch (DataAccessException ex) {
+            // Crear GenericException para errores de acceso a datos
+            GenericException genericException = new GenericException(
+                List.of("Error fetching persona"),
+                EnumHttpMessages.E500
+            );
+            // Usar ExceptionsManager para obtener la respuesta estándar
+            ResponseEntity<GenericResponse> errorResponse = ExceptionsManager.returnResponseEntity(genericException);
+            throw new RuntimeException(errorResponse.getBody().toString(), ex);
+        } catch (Exception ex) {
+            // Manejar cualquier otra excepción inesperada
+            GenericException genericException = new GenericException(
+                List.of("Internal server error"),
+                EnumHttpMessages.E500
+            );
+            ResponseEntity<GenericResponse> errorResponse = ExceptionsManager.returnResponseEntity(genericException);
+            throw new RuntimeException(errorResponse.getBody().toString(), ex);
+        }
+    }
+	/**
 	public CommonResponse<Persona> findById(Long id) {
 	    try {
 	        Persona persona = personaRepository.findById(id).orElse(null);
@@ -97,5 +122,6 @@ public class PersonaServiceImpl implements PersonaService {
 	        // Lanzar una ResponseStatusException con la respuesta de error
 	        throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, errorResponse.toString(), ex);
 	    }
-
-	}}
+	}**/
+	
+}

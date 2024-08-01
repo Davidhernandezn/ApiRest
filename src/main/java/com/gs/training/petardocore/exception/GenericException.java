@@ -2,9 +2,7 @@ package com.gs.training.petardocore.exception;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.gs.training.petardocore.enums.EnumHttpMessages;
-
 import lombok.Data;
 
 /**
@@ -25,5 +23,15 @@ public class GenericException extends RuntimeException {
 		super(details.get(0));
 		this.details = new ArrayList<>(details);
 		this.enumHttpMessages = enumHttpMessages;
+	}
+
+	public List<String> getDetails() {
+		// TODO Auto-generated method stub
+		return details;
+	}
+
+	public EnumHttpMessages getEnumHttpMessages() {
+		// TODO Auto-generated method stub
+		return enumHttpMessages;
 	}
 }

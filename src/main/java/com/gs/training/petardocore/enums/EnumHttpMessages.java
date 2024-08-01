@@ -1,6 +1,7 @@
 package com.gs.training.petardocore.enums;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 
 import com.gs.training.petardocore.constant.PetardoCoreConstants;
 
@@ -39,7 +40,7 @@ public enum EnumHttpMessages {
 	E500(HttpStatus.INTERNAL_SERVER_ERROR.value() + "." + getBasePathCapitalized(PetardoCoreConstants.BASE_PATH) +
 	".00", EnumHttpMessages.E500_MESSAGE, HttpStatus.INTERNAL_SERVER_ERROR);
 
-	public static final String EOK_MESSAGE = "Successful operation.";
+	public static final String EOK_MESSAGE = "Operación exitosa";
 	public static final String E401_MESSAGE = "Access to unauthorized resource.";
 	public static final String E400_MESSAGE = "Invalid parameters, please validate your information.";
 	public static final String E404_MESSAGE = "Information not found, please validate.";
@@ -98,7 +99,7 @@ public enum EnumHttpMessages {
 		return status;
 	}
 
-	public Object getMessage() {
+	public String getMessage() {
 		// TODO Auto-generated method stub
 		return message;
 	}
@@ -106,5 +107,10 @@ public enum EnumHttpMessages {
 	public Object getInfo() {
 		// TODO Auto-generated method stub
 		return info;
+	}
+
+	public HttpStatusCode getHttpStatus() {
+		// TODO Auto-generated method stub
+		return httpStatus;
 	}
 }
