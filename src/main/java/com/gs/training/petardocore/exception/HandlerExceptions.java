@@ -2,7 +2,6 @@ package com.gs.training.petardocore.exception;
 
 import java.util.Collections;
 import java.util.Objects;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.web.firewall.RequestRejectedException;
@@ -77,7 +76,7 @@ public class HandlerExceptions {
 	 * @param ex the ex
 	 * @return the response entity
 	 */
-	@ExceptionHandler(HttpMessageNotReadableException.class)
+	@ExceptionHandler(value = {HttpMessageNotReadableException.class})
 	public ResponseEntity<GenericResponse> handleValidationFormat(HttpMessageNotReadableException ex) {
 		
 		return ExceptionsManager.returnResponseEntity(new GenericException(

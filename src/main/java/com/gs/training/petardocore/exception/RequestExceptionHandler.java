@@ -1,12 +1,15 @@
 package com.gs.training.petardocore.exception;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.regex.Pattern;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -15,7 +18,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.server.ResponseStatusException;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gs.training.petardocore.constant.PetardoCoreConstants;
@@ -32,6 +34,7 @@ public class RequestExceptionHandler {
 	 * my regex
 	 */
 	private static final Pattern myRegex = Pattern.compile("/\\/");
+	private static final Logger LOGGER = LoggerFactory.getLogger(RequestExceptionHandler.class);
 
 	/**
 	 * Handle validation exceptions 401 response entity.
@@ -101,5 +104,33 @@ public class RequestExceptionHandler {
 		
 		return ExceptionsManager.returnResponseEntity(new GenericException(
 				Collections.singletonList("Solicitud mal formada, favor de validar."), EnumHttpMessages.E400));
+	}
+	
+	@ExceptionHandler(DataAccessException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public ResponseEntity<GenericResponse> handleDataAccessException(DataAccessException ex) {
+		LOGGER.error("DataAccessException occurred", ex);
+		String folio = generateUniqueFolio();
+		return createErrorResponse("400.Elektra-Criptomonedas-Gestion-Cotizaciones.400001",
+								   "El servidor no pudo interpretar la solicitud dada una sintaxis inválida.",
+								   folio,
+								   "https://baz-developer.bancoazteca.com.mx/info#400.Elektra-Criptomonedas-Gestion-Cotizaciones.400001",
+								   List.of("Parámetros incorrectos."));
+	}
+	
+	private ResponseEntity<GenericResponse> createErrorResponse(String codigo, String mensaje, String folio, String info, List<String> detalles) {
+		Map<String, Object> errorDetails = new HashMap<>();
+		errorDetails.put("codigo", codigo);
+		errorDetails.put("mensaje", mensaje);
+		errorDetails.put("folio", folio);
+		errorDetails.put("info", info);
+		errorDetails.put("detalles", detalles);
+
+		GenericResponse genericResponse = new GenericResponse();
+		return new ResponseEntity<>(genericResponse, HttpStatus.BAD_REQUEST);
+	}
+	
+	private String generateUniqueFolio() {
+		return UUID.randomUUID().toString();
 	}
 }

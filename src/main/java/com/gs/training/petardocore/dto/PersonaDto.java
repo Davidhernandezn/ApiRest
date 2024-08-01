@@ -1,9 +1,11 @@
 package com.gs.training.petardocore.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
+@Schema(description = "Respuesta de Registro de Persona")
 public class PersonaDto {
 	    private Long id;
 	    
@@ -93,4 +95,5 @@ public class PersonaDto {
 	    public void setTelefono(String telefono) {
 	        this.telefono = telefono;
 	    }
+	    
 	}

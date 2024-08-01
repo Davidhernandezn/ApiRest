@@ -2,6 +2,8 @@ package com.gs.training.petardocore.controller;
 
 import com.gs.ftt.log.LogMonitor;
 import com.gs.training.petardocore.dto.PersonaDto;
+import com.gs.training.petardocore.enums.EnumHttpMessages;
+import com.gs.training.petardocore.exception.EMensajeException;
 import com.gs.training.petardocore.mapper.PersonaMapper;
 import com.gs.training.petardocore.model.CommonResponse;
 import com.gs.training.petardocore.model.Persona;
@@ -27,9 +29,8 @@ public class PersonaController {
 
 	@Autowired
 	private PersonaMapper personaMapper;
-	
-	private static final LogMonitor LOGGER = new LogMonitor(PetardoCoreController.class);
 
+	private static final LogMonitor LOGGER = new LogMonitor(PetardoCoreController.class);
 
 	@GetMapping("/personas")
 	@ResponseStatus(HttpStatus.OK)
@@ -37,95 +38,50 @@ public class PersonaController {
 		return personaService.getAllPersonas().stream().map(personaMapper::toDTO).collect(Collectors.toList());
 	}
 
-	@GetMapping("/persona")
+	@GetMapping("/persona/")
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<?> showById(@RequestParam(required = false) Long id) {
-		if (id == null) {
-			return new ResponseEntity<>(createErrorResponse("Error: el parámetro ID es requerido."),
-					HttpStatus.BAD_REQUEST);
-		}
-		Persona persona = personaService.findById(id);
-		if (persona == null) {
-			return new ResponseEntity<>(createErrorResponse("Error: la persona con ID: " + id + " no es válida."),
-					HttpStatus.BAD_REQUEST);
-		}
-		return new ResponseEntity<>(personaMapper.toDTO(persona), HttpStatus.OK);
+	    CommonResponse<Persona> response = personaService.findById(id);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
 	}
-
 	/**
-	@PostMapping("/persona")
-	 * @return 
-	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<?> create(@Valid @RequestBody PersonaDto personaDTO) {
-		try {
-			Persona persona = personaMapper.toEntity(personaDTO);
-			Persona savedPersona = personaService.savePersona(persona);
-			return new ResponseEntity<>(personaMapper.toDTO(savedPersona), HttpStatus.CREATED);
-		} catch (DataAccessException exDt) {
-			return new ResponseEntity<>(
-					createErrorResponse("Error al realizar la inserción en la base de datos.", exDt),
-					HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+	   public ResponseEntity<?> showById(@RequestParam(required = false) Long id) {
+        Persona response = personaService.findById(id);
+        if ("Operación exitosa".equals(response.getMensaje())) {
+            return new ResponseEntity<>(personaMapper.toDTO(response.getResultado()), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(new EMensajeException(response.getCodigo(), response.getMensaje()), HttpStatus.valueOf(Integer.parseInt(response.getCodigo())));
+        }
 	}**/
-	
-	@PostMapping("/persona")
+
+	@PostMapping("persona")
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<?> create(@Valid @RequestBody PersonaDto personaDto) {
-		LOGGER.info("POST banco-azteca/afore/personas/v1/personas request= {}", personaDto);
-		CommonResponse<Persona> response = personaService.savePersona(personaDto);
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
-		
-	}
-
-	/**
-	@PutMapping("/persona")
-	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<?> updatePerson(@RequestBody PersonaDto personaDTO, @RequestParam(required = false) Long id) {
-
-		if (id == null) {
-			return new ResponseEntity<>(createErrorResponse("Error: el parámetro ID es requerido."),
-					HttpStatus.BAD_REQUEST);
-		}
-		
-		Persona personaFindById = personaService.findById(id);
-		if (personaFindById == null) {
-			return new ResponseEntity<>(
-					createErrorResponse(
-							"Error: no se pudo editar, la persona ID: " + personaDTO.getId() + " no existe."),
-					HttpStatus.NOT_FOUND);
-		}
-
-		try {
-			personaDTO.setId(id);
-			BeanUtils.copyProperties(personaFindById, personaDTO);
-			Persona updatedPersona = personaService.savePersona(personaFindById);
-			return new ResponseEntity<>(personaMapper.toDTO(updatedPersona), HttpStatus.CREATED);
-		} catch (DataAccessException exDt) {
-			return new ResponseEntity<>(
-					createErrorResponse("Error al actualizar la persona en la base de datos.", exDt),
-					HttpStatus.INTERNAL_SERVER_ERROR);
-		} catch (IllegalAccessException | InvocationTargetException e) {
-			return new ResponseEntity<>(createErrorResponse("Error al copiar las propiedades de la persona.", e),
-					HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}**/
-	
-	 @DeleteMapping("/persona/{id}")
-	    public ResponseEntity<Void> deletePersona(@RequestParam(required = false) Long id) {
-			if (id == null) {
-			    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Error: el parámetro ID es requerido.");
-			}
+		 LOGGER.info("POST banco-azteca/afore/personas/v1/personas request= {}", personaDto);
 	        try {
-	            personaService.deletePersona(id);
-	            return ResponseEntity.noContent().build();
-	        } catch (EntityNotFoundException ex) {
-	            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Persona not found", ex);
-	        } catch (Exception ex) {
-	            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Internal server error", ex);
+	            CommonResponse<Persona> response = personaService.savePersona(personaDto);
+	            return new ResponseEntity<>(response, HttpStatus.CREATED);
+	        } catch (Exception e) {
+	            return null;
 	        }
 	    }
+	
 
-	 
+	@DeleteMapping("/persona/{id}")
+	public ResponseEntity<Void> deletePersona(@RequestParam(required = false) Long id) {
+		if (id == null) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Error: el parámetro ID es requerido.");
+		}
+		try {
+			personaService.deletePersona(id);
+			return ResponseEntity.noContent().build();
+		} catch (EntityNotFoundException ex) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Persona not found", ex);
+		} catch (Exception ex) {
+			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Internal server error", ex);
+		}
+	}
+
 	private Map<String, Object> createErrorResponse(String message) {
 		Map<String, Object> response = new HashMap<>();
 		response.put("mensaje", message);

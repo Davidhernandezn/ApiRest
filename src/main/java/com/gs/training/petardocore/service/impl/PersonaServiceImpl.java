@@ -44,22 +44,6 @@ public class PersonaServiceImpl implements PersonaService {
         return personaRepository.findAll();
     }  
     
-	/**
-    public Persona savePersona(PersonaDto personaDto) {
-        try {
-        	String folio = UUID.randomUUID().toString();
-        	//return personaRepository.save(personaDto);
-            // Convertir el DTO a la entidad
-            Persona persona = personaMapper.toEntity(personaDto);
-            // Guardar la entidad
-            Persona savedPersona = personaRepository.save(persona);
-            // Devolver la entidad guardada
-            return savedPersona;
-        } catch (DataAccessException ex) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error saving persona", ex);
-        }
-    }**/
-    
     @Override
     @Transactional
     public CommonResponse<Persona> savePersona(PersonaDto personaDto) {
@@ -75,23 +59,6 @@ public class PersonaServiceImpl implements PersonaService {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error saving persona", ex);
         }
     }
-
-    
-    private Object createErrorResponse(String string, Exception ex) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/**
-    @Override
-	@Transactional
-	public Persona savePersona(Persona persona) {
-        try {
-            return personaRepository.save(persona);
-        } catch (DataAccessException ex) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error saving persona", ex);
-        }
-	}**/
 	
     @Override
    	@Transactional
@@ -118,8 +85,17 @@ public class PersonaServiceImpl implements PersonaService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public Persona findById(Long id) {
-		// TODO Auto-generated method stub
-		return personaRepository.findById(id).orElse(null);
-	}
-}
+	public CommonResponse<Persona> findById(Long id) {
+	    try {
+	        Persona persona = personaRepository.findById(id).orElse(null);
+	        if (persona == null) {
+	            return new CommonResponse<>("Persona no encontrada", null);
+	        }
+	        return new CommonResponse<>("Operación exitosa", persona);
+	    } catch (DataAccessException ex) {
+	        CommonResponse<Persona> errorResponse = new CommonResponse<>("Error fetching persona", null);
+	        // Lanzar una ResponseStatusException con la respuesta de error
+	        throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, errorResponse.toString(), ex);
+	    }
+
+	}}

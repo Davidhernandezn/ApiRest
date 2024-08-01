@@ -9,7 +9,7 @@ import lombok.Getter;
 import java.util.Locale;
 
 /**
- * <b>EnumHttpMessages.java</b>
+ * <b>EnumHttpMessages.java</b>	
  *
  * @version: ts-demo-base-v1 1.0
  * @descripcion: EnumHttpMessages Class
@@ -96,5 +96,15 @@ public enum EnumHttpMessages {
 	public String getStatus() {
 		// TODO Auto-generated method stub
 		return status;
+	}
+
+	public Object getMessage() {
+		// TODO Auto-generated method stub
+		return message;
+	}
+
+	public Object getInfo() {
+		// TODO Auto-generated method stub
+		return info;
 	}
 }

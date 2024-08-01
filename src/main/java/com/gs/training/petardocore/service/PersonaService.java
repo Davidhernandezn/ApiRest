@@ -18,15 +18,18 @@ public interface PersonaService {
      * @param Long id 
      * @return the Persona with the specified ID.
      */
-    Persona findById(Long id);
+    //Persona findById(Long id);
+    CommonResponse<Persona> findById(Long id);
+
 
     /**
      * Saves a new Person. 
      * @param persona the Persona to saved.
      * @return the saved Persona.
      */
-    //Persona savePersona(@Valid Persona persona);
-
+  	CommonResponse<Persona> savePersona(PersonaDto personaDto);
+  	
+  	
     /**
      * Deletes an existing Persona. 
      * @param Long id 
@@ -42,7 +45,6 @@ public interface PersonaService {
      */
     Persona updatePersona(Long id, Persona personaDetails);
 
-	//Persona savePersona(PersonaDto persona);
-	CommonResponse<Persona> savePersona(PersonaDto personaDto);
+	
 
 }
