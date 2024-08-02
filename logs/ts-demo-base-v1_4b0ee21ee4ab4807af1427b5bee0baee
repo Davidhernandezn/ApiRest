@@ -29,3 +29,11 @@
 {"log_data":{"fecha":"2024-08-02 00:00:45.84","Level":"INFO","Mensaje":" Starting ProtocolHandler [\"http-nio-8084\"]","servicios":[],"TiempoTotal":1}}
 {"log_data":{"fecha":"2024-08-02 00:00:45.88","Level":"INFO","Mensaje":" Tomcat started on port 8084 (http) with context path ''","servicios":[],"TiempoTotal":1}}
 {"log_data":{"fecha":"2024-08-02 00:00:45.90","Level":"INFO","Mensaje":" Started PetardoCoreApplication in 11.151 seconds (process running for 12.821)","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-08-02 00:02:14.98","Level":"INFO","Mensaje":" Initializing Spring DispatcherServlet 'dispatcherServlet'","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-08-02 00:02:14.99","Level":"INFO","Mensaje":" Initializing Servlet 'dispatcherServlet'","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-08-02 00:02:14.99","Level":"INFO","Mensaje":" Completed initialization in 6 ms","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-08-02 00:13:53.51","Level":"INFO","Mensaje":" Application shutdown requested.","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-08-02 00:13:53.63","Level":"INFO","Mensaje":" Stopping ProtocolHandler [\"http-nio-8084\"]","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-08-02 00:13:53.78","Level":"INFO","Mensaje":" Closing JPA EntityManagerFactory for persistence unit 'default'","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-08-02 00:13:53.82","Level":"INFO","Mensaje":" HikariPool-1 - Shutdown initiated...","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-08-02 00:13:53.84","Level":"INFO","Mensaje":" HikariPool-1 - Shutdown completed.","servicios":[],"TiempoTotal":1}}

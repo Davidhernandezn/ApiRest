@@ -75,7 +75,7 @@ public class PersonaServiceImpl implements PersonaService {
             Persona persona = personaRepository.findById(id).orElse(null);
             if (persona == null) {
                 throw new GenericException(
-                    List.of("Persona no encontrada :/"),
+                    List.of("No se obtuvo información relacionada a la consulta."),
                     EnumHttpMessages.E404
                 );
             }

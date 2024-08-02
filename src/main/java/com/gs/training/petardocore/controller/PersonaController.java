@@ -46,7 +46,6 @@ public class PersonaController {
 			GenericResponse<Persona> response = personaService.findById(id);
 			return ResponseEntity.ok(response);
 		} catch (RuntimeException ex) {
-			// Manejar excepciones lanzadas desde el servicio
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(), ex);
 		}
 	}
