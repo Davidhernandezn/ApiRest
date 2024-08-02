@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.regex.Pattern;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
@@ -49,7 +48,7 @@ public class RequestExceptionHandler {
 		
 		List<String> details = new ArrayList<>();
 
-		details.add("The field " + ex.getParameterName() + " is required");
+		details.add("El valor " + ex.getParameterName() + " es requerido");
 
 		return ExceptionsManager.returnResponseEntity(new GenericException(details, EnumHttpMessages.E400));
 	}

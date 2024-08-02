@@ -3,6 +3,7 @@ package com.gs.training.petardocore.model;
 import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.gs.training.petardocore.enums.EnumHttpMessages;
 import com.gs.training.petardocore.util.Folio;
 import lombok.Data;
@@ -11,6 +12,7 @@ import lombok.Data;
  * The type Generic insert response.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder({ "codigo", "mensaje", "folio", "info","detalles"})
 @Data
 public class GenericResponse <T>{
 	
@@ -29,7 +31,7 @@ public class GenericResponse <T>{
 	/**
 	 * Error Information URL.
 	 */
-	//private Object infoUrl;
+	private Object info;
 	/**
 	 * Details of the error if the request failed.
 	 */
@@ -52,19 +54,19 @@ public class GenericResponse <T>{
 	}	**/
 	
 	public GenericResponse(T resultado) {
+			this.setCodigo(getCodigo());
 	        this.setMensaje(EnumHttpMessages.EOK_MESSAGE);
 	        this.setFolio(Folio.HOLDER.get());
 	        this.setResultado(resultado);
-	        System.out.println("##RESULTADO"+ resultado);
+	        this.setInfo(info);
 	}
 
 	public GenericResponse(List<String> details, EnumHttpMessages enumHttpMessages) {
 		this();
 		this.codigo = enumHttpMessages.getStatus();
 		this.mensaje= enumHttpMessages.getMessage();
-		//this.transactionId = Folio.HOLDER.get();
-		//this.infoUrl = enumHttpMessages.getInfo();
 		this.detalles = new ArrayList<>(details);
+		this.info = enumHttpMessages.getInfo();
 	}
 	
 	
@@ -108,7 +110,12 @@ public class GenericResponse <T>{
 	public void setResultado(T resultado) {
 		this.resultado = resultado;
 	}
-	
 
-	
+	public Object getInfo() {
+		return info;
+	}
+
+	public void setInfo(Object info) {
+		this.info = info;
+	}
 }

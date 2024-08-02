@@ -13,7 +13,6 @@ import com.gs.training.petardocore.enums.EnumHttpMessages;
 import com.gs.training.petardocore.exception.ExceptionsManager;
 import com.gs.training.petardocore.exception.GenericException;
 import com.gs.training.petardocore.mapper.PersonaMapper;
-import com.gs.training.petardocore.model.CommonResponse;
 import com.gs.training.petardocore.model.GenericResponse;
 import com.gs.training.petardocore.model.Persona;
 import com.gs.training.petardocore.repository.PersonaRepository;
@@ -34,22 +33,6 @@ public class PersonaServiceImpl implements PersonaService {
     public List<Persona> getAllPersonas() {
         return personaRepository.findAll();
     }  
-    
-    @Override
-    @Transactional
-    public CommonResponse<Persona> savePersona(PersonaDto personaDto) {
-        try {
-            // Convertir el DTO a la entidad
-            Persona persona = personaMapper.toEntity(personaDto);
-            // Guardar la entidad
-            Persona savedPersona = personaRepository.save(persona);
-            // Crear y devolver la respuesta con mensaje
-            return new CommonResponse<>("Operación exitosa", savedPersona);
-        } catch (DataAccessException ex) {
-            // Manejar excepción y devolver respuesta con mensaje de error
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error saving persona", ex);
-        }
-    }
 	
     @Override
    	@Transactional
@@ -72,7 +55,18 @@ public class PersonaServiceImpl implements PersonaService {
             return personaRepository.save(personaDetails);
         });
     }
-
+    
+    @Override
+    @Transactional
+    public GenericResponse<Persona> savePersona(PersonaDto personaDto) {
+        try {
+            Persona persona = personaMapper.toEntity(personaDto);
+            Persona savedPersona = personaRepository.save(persona);
+            return new GenericResponse<>(savedPersona);
+        } catch (DataAccessException ex) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error saving persona", ex);
+        }
+    }
 
 	@Override
 	@Transactional(readOnly = true)
@@ -80,27 +74,22 @@ public class PersonaServiceImpl implements PersonaService {
         try {
             Persona persona = personaRepository.findById(id).orElse(null);
             if (persona == null) {
-                // Crear GenericException para el caso en que la persona no se encuentre
                 throw new GenericException(
                     List.of("Persona no encontrada :/"),
                     EnumHttpMessages.E404
                 );
             }
-            // Crear una respuesta exitosa con los datos de la persona
             return new GenericResponse<Persona>(persona);
             //return new GenericResponse<Persona>();
 
         } catch (DataAccessException ex) {
-            // Crear GenericException para errores de acceso a datos
             GenericException genericException = new GenericException(
                 List.of("Error fetching persona"),
                 EnumHttpMessages.E500
             );
-            // Usar ExceptionsManager para obtener la respuesta estándar
             ResponseEntity<GenericResponse> errorResponse = ExceptionsManager.returnResponseEntity(genericException);
             throw new RuntimeException(errorResponse.getBody().toString(), ex);
         } catch (Exception ex) {
-            // Manejar cualquier otra excepción inesperada
             GenericException genericException = new GenericException(
                 List.of("Internal server error"),
                 EnumHttpMessages.E500
@@ -109,19 +98,5 @@ public class PersonaServiceImpl implements PersonaService {
             throw new RuntimeException(errorResponse.getBody().toString(), ex);
         }
     }
-	/**
-	public CommonResponse<Persona> findById(Long id) {
-	    try {
-	        Persona persona = personaRepository.findById(id).orElse(null);
-	        if (persona == null) {
-	            return new CommonResponse<>("Persona no encontrada", null);
-	        }
-	        return new CommonResponse<>("Operación exitosa", persona);
-	    } catch (DataAccessException ex) {
-	        CommonResponse<Persona> errorResponse = new CommonResponse<>("Error fetching persona", null);
-	        // Lanzar una ResponseStatusException con la respuesta de error
-	        throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, errorResponse.toString(), ex);
-	    }
-	}**/
 	
 }

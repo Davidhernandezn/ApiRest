@@ -8,7 +8,6 @@ import org.springframework.security.web.firewall.RequestRejectedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-
 import com.gs.training.petardocore.enums.EnumHttpMessages;
 import com.gs.training.petardocore.model.GenericResponse;
 

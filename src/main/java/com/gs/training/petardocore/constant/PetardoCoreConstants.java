@@ -62,9 +62,13 @@ public final class PetardoCoreConstants {
 	 */
 	public static final String ZONE_ID = "America/Mexico_City";
 	/**
+	 * The constant URL_DEVELOPER_INFORMATION_CODES_DEFAULT.
+	 */
+	public static final String URL_DEVELOPER_INFORMATION_CODES_DEFAULT = "https://baz-developer.bancoazteca.com.mx/info#";
+	/**
 	 * The constant URL_DEVELOPER_INFORMATION_CODES.
 	 */
-	public static final String URL_DEVELOPER_INFORMATION_CODES = "https://baz-developer.bancoazteca.com.mx/info#";
+	public static final String URL_DEVELOPER_INFORMATION_CODES = "https://dev-api.bancoazteca.com.mx/info";
 	/**
 	 * The constant PATH_STATUS
 	 */
@@ -78,6 +82,10 @@ public final class PetardoCoreConstants {
 	 */
 	public static final String USER_HEADER = "x-user-token";
 	/**
+	 * The constant USER_HEADER_TOKEN.
+	 */
+	public static final String USER_HEADER_TOKEN = "x-token-autorizacion";
+	/**
 	 * The constant PATH_CONTROLLER.
 	 */
 	public static final String PATH_CONTROLLER = "/petardocore" + "";
@@ -86,9 +94,13 @@ public final class PetardoCoreConstants {
 	 */
 	public static final String PATH_CONTROLLER_GET_ID = "/petardocore/{id}" + "";
 	/**
-	 * The constant BASE_PATH.
+	 * The constant BASE_PATH DEFAULT
 	 */
-	public static final String BASE_PATH = "/ts/demo/base/v1" + "";
+	public static final String BASE_PATH_DEFAULT = "/ts/demo/base/v1" + "";
+	/**
+	 * The constant BASE_PATH 
+	 */
+	public static final String BASE_PATH = "/banco-azteca/afore/gestion-personas/v1/" + "";
 	/**
 	 * The constant E400.
 	 */
@@ -114,6 +126,11 @@ public final class PetardoCoreConstants {
 	 * The constant USUARIO_INTERNO_HEADER.
 	 */
 	public static final String USUARIO_INTERNO_HEADER = "x-usuario-interno";
+
+	/**
+	 * The constant USUARIO_EXTERNO_HEADER.
+	 */
+	public static final String USER_EXTERNAL_HEADER = "x-usuario-externo";
 	/**
 	 * The constant PATH_VALIDACIONES
 	 */

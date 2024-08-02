@@ -22,7 +22,7 @@ public enum EnumHttpMessages {
 	/**
 	 * The E 400.
 	 */
-	E400(HttpStatus.BAD_REQUEST.value() + "." + getBasePathCapitalized(PetardoCoreConstants.BASE_PATH) + ".00",
+	E400(HttpStatus.BAD_REQUEST.value() + "." + getBasePathCapitalized(PetardoCoreConstants.BASE_PATH),
 			EnumHttpMessages.E400_MESSAGE, HttpStatus.BAD_REQUEST),
 	/**
 	 * The E 401.
@@ -40,11 +40,11 @@ public enum EnumHttpMessages {
 	E500(HttpStatus.INTERNAL_SERVER_ERROR.value() + "." + getBasePathCapitalized(PetardoCoreConstants.BASE_PATH) +
 	".00", EnumHttpMessages.E500_MESSAGE, HttpStatus.INTERNAL_SERVER_ERROR);
 
-	public static final String EOK_MESSAGE = "Operación exitosa";
-	public static final String E401_MESSAGE = "Access to unauthorized resource.";
-	public static final String E400_MESSAGE = "Invalid parameters, please validate your information.";
-	public static final String E404_MESSAGE = "Information not found, please validate.";
-	public static final String E500_MESSAGE = "Internal server problem, please validate.";
+	public static final String EOK_MESSAGE  = "Operación exitosa";
+	public static final String E401_MESSAGE = "No estas autorizado, favor de validar.";
+	public static final String E400_MESSAGE = "Solicitud mal formada, favor de validar.";
+	public static final String E404_MESSAGE = "Información no encontrada, favor validar.";
+	public static final String E500_MESSAGE = "Problema interno en el servidor, favor de validar.";
 	private final String status;
 	private final String message;
 	private final String info;
