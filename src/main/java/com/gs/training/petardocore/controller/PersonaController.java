@@ -41,9 +41,9 @@ public class PersonaController {
 
 	@GetMapping("/persona/")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<GenericResponse> findById(@RequestParam Long id) {
+	public ResponseEntity<GenericResponse> findById(@RequestParam Long idPersona) {
 		try {
-			GenericResponse<Persona> response = personaService.findById(id);
+			GenericResponse<Persona> response = personaService.findById(idPersona);
 			return ResponseEntity.ok(response);
 		} catch (RuntimeException ex) {
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(), ex);
@@ -66,15 +66,15 @@ public class PersonaController {
 	}
 
 	@DeleteMapping("/persona/")
-	public ResponseEntity<Void> deletePersona(@RequestParam(required = false) Long id) {
-		if (id == null) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Error: el parámetro ID es requerido.");
+	public ResponseEntity<Void> deletePersona(@RequestParam(required = false) Long idPersona) {
+		if (idPersona == null) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Error: el parámetro idPersona es requerido.");
 		}
 		try {
-			personaService.deletePersona(id);
+			personaService.deletePersona(idPersona);
 			return ResponseEntity.noContent().build();
 		} catch (EntityNotFoundException ex) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Persona not found", ex);
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se entontro persona", ex);
 		} catch (Exception ex) {
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Internal server error", ex);
 		}

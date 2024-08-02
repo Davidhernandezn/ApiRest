@@ -20,8 +20,7 @@ public interface PersonaService {
 	 * @param Long id
 	 * @return the Persona with the specified ID.
 	 */
-	// GenericResponse findById(Long id);
-	GenericResponse<Persona> findById(Long id);
+	GenericResponse<Persona> findById(Long idPersona);
 
 	/**
 	 * Saves a new Person
@@ -29,7 +28,6 @@ public interface PersonaService {
 	 * @param persona the Persona to saved.
 	 * @return the saved Persona.
 	 */
-	// GenericResponse findById(Long id);
 	GenericResponse<Persona> savePersona(PersonaDto personaDto);
 
 	/**
@@ -37,7 +35,7 @@ public interface PersonaService {
 	 * 
 	 * @param Long id
 	 */
-	void deletePersona(Long id);
+	void deletePersona(Long idPersona);
 
 	/**
 	 * Updates an existing Persona.
@@ -46,6 +44,6 @@ public interface PersonaService {
 	 * @param personaDetails the new details for the Persona.
 	 * @return the updated Persona.
 	 */
-	Persona updatePersona(Long id, Persona personaDetails);
+	Persona updatePersona(Long idPersona, Persona personaDetails);
 
 }

@@ -98,7 +98,7 @@ public final class PetardoCoreConstants {
 	 */
 	public static final String BASE_PATH_DEFAULT = "/ts/demo/base/v1" + "";
 	/**
-	 * The constant BASE_PATH 
+	 * The constant BASE_PATH
 	 */
 	public static final String BASE_PATH = "/banco-azteca/afore/gestion-personas/v1/" + "";
 	/**
@@ -134,7 +134,7 @@ public final class PetardoCoreConstants {
 	/**
 	 * The constant PATH_VALIDACIONES
 	 */
-	public static final String PATH_VALIDACIONES = "/validaciones";	;
+	public static final String PATH_VALIDACIONES = "/validaciones";;
 	// APIGEECONSTANT
 	// IDACCESOCONSTANT
 

@@ -20,7 +20,7 @@ import com.gs.training.petardocore.model.GenericResponse;
  */
 @ControllerAdvice
 public class HandlerExceptions {
-	
+
 	/**
 	 * Handle api request exception response entity.
 	 *
@@ -31,7 +31,7 @@ public class HandlerExceptions {
 	 */
 	@ExceptionHandler(value = { GenericException.class })
 	public ResponseEntity<GenericResponse> handleApiRequestException(GenericException e) {
-		
+
 		return ExceptionsManager.returnResponseEntity(e);
 	}
 
@@ -42,19 +42,19 @@ public class HandlerExceptions {
 	 */
 	@ExceptionHandler(RequestRejectedException.class)
 	public ResponseEntity<GenericResponse> handleRequestRejectedException(RequestRejectedException ex) {
-		
-		return ExceptionsManager
-				.returnResponseEntity(new GenericException(Collections.singletonList(ex.getMessage()), EnumHttpMessages.E400));
+
+		return ExceptionsManager.returnResponseEntity(
+				new GenericException(Collections.singletonList(ex.getMessage()), EnumHttpMessages.E400));
 	}
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<GenericResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
-		
+
 		String errorMessage = "Validation error: "
 				+ Objects.requireNonNull(ex.getBindingResult().getFieldError()).getDefaultMessage();
 
-		return ExceptionsManager
-				.returnResponseEntity(new GenericException(Collections.singletonList(errorMessage), EnumHttpMessages.E400));
+		return ExceptionsManager.returnResponseEntity(
+				new GenericException(Collections.singletonList(errorMessage), EnumHttpMessages.E400));
 	}
 
 	/**
@@ -64,9 +64,10 @@ public class HandlerExceptions {
 	 */
 	@ExceptionHandler(NumberFormatException.class)
 	public ResponseEntity<GenericResponse> handleNumberFormatException() {
-		
+
 		return ExceptionsManager.returnResponseEntity(new GenericException(
-				Collections.singletonList("Incorrectly formed application, please validate."), EnumHttpMessages.E400));
+				Collections.singletonList("Parámetros no válidos, por favor valide su información."),
+				EnumHttpMessages.E400));
 	}
 
 	/**
@@ -75,10 +76,11 @@ public class HandlerExceptions {
 	 * @param ex the ex
 	 * @return the response entity
 	 */
-	@ExceptionHandler(value = {HttpMessageNotReadableException.class})
+	@ExceptionHandler(value = { HttpMessageNotReadableException.class })
 	public ResponseEntity<GenericResponse> handleValidationFormat(HttpMessageNotReadableException ex) {
-		
+
 		return ExceptionsManager.returnResponseEntity(new GenericException(
-				Collections.singletonList("Incorrectly formed application, please validate."), EnumHttpMessages.E400));
+				Collections.singletonList("Parámetros no válidos, por favor valide su información."),
+				EnumHttpMessages.E400));
 	}
 }

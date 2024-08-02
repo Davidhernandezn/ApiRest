@@ -50,7 +50,7 @@ public enum EnumHttpMessages {
 	EnumHttpMessages(String status, String message, HttpStatus httpStatus) {
 		this.status = status;
 		this.message = message;
-		this.info = PetardoCoreConstants.URL_DEVELOPER_INFORMATION_CODES + status;
+		this.info = PetardoCoreConstants.URL_DEVELOPER_INFORMATION_CODES + "#" + status;
 		this.httpStatus = httpStatus;
 	}
 

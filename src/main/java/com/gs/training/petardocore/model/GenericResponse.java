@@ -12,10 +12,10 @@ import lombok.Data;
  * The type Generic insert response.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "codigo", "mensaje", "folio", "info","detalles"})
+@JsonPropertyOrder({ "codigo", "mensaje", "folio", "info", "detalles" })
 @Data
-public class GenericResponse <T>{
-	
+public class GenericResponse<T> {
+
 	/**
 	 * Request HTTP Status Code.
 	 */
@@ -37,40 +37,31 @@ public class GenericResponse <T>{
 	 */
 	private List<String> detalles;
 
-	//private Object data;
-    private T resultado;
-
+	// private Object data;
+	private T resultado;
 
 	public GenericResponse() {
 		this.mensaje = EnumHttpMessages.EOK_MESSAGE;
 		this.folio = Folio.HOLDER.get();
 	}
 
-	/**public GenericResponse(Object data) {
-		//this.message = EnumHttpMessages.EOK_MESSAGE;
-		//this.transactionId = Folio.HOLDER.get();
-		this();
-		this.data = data;
-	}	**/
-	
 	public GenericResponse(T resultado) {
-			this.setCodigo(getCodigo());
-	        this.setMensaje(EnumHttpMessages.EOK_MESSAGE);
-	        this.setFolio(Folio.HOLDER.get());
-	        this.setResultado(resultado);
-	        this.setInfo(info);
+		this.setCodigo(getCodigo());
+		this.setMensaje(EnumHttpMessages.EOK_MESSAGE);
+		this.setFolio(Folio.HOLDER.get());
+		this.setResultado(resultado);
+		this.setInfo(info);
 	}
 
 	public GenericResponse(List<String> details, EnumHttpMessages enumHttpMessages) {
 		this();
 		this.codigo = enumHttpMessages.getStatus();
-		this.mensaje= enumHttpMessages.getMessage();
+		this.mensaje = enumHttpMessages.getMessage();
 		this.detalles = new ArrayList<>(details);
 		this.info = enumHttpMessages.getInfo();
 	}
-	
-	
-	//GETTERS AND SETTERS
+
+	// GETTERS AND SETTERS
 	public String getMensaje() {
 		return mensaje;
 	}
@@ -98,7 +89,7 @@ public class GenericResponse <T>{
 	public List<String> getDetalles() {
 		return detalles;
 	}
-	
+
 	public void setDetalles(List<String> detalles) {
 		this.detalles = detalles;
 	}

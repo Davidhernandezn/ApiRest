@@ -14,7 +14,7 @@ class ConvertersTest {
 	void testJson() throws JsonProcessingException, JSONException {
 		
 		PetardoCoreDto dto = new PetardoCoreDto();
-		dto.setId(1L);
+		dto.setIdPersona(1L);
 		dto.setName("Coe");
 
 		Converters converters = new Converters();

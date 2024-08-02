@@ -14,24 +14,22 @@ import lombok.Data;
  */
 @Data
 public class GenericException extends RuntimeException {
-	
+
 	private final EnumHttpMessages enumHttpMessages;
 	private final List<String> details;
 
 	public GenericException(List<String> details, EnumHttpMessages enumHttpMessages) {
-		
+
 		super(details.get(0));
 		this.details = new ArrayList<>(details);
 		this.enumHttpMessages = enumHttpMessages;
 	}
 
 	public List<String> getDetails() {
-		// TODO Auto-generated method stub
 		return details;
 	}
 
 	public EnumHttpMessages getEnumHttpMessages() {
-		// TODO Auto-generated method stub
 		return enumHttpMessages;
 	}
 }
