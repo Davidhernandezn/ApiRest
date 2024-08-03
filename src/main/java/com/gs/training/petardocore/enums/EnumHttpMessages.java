@@ -15,7 +15,11 @@ import java.util.Locale;
  */
 @Getter
 public enum EnumHttpMessages {
-
+	/**
+	 * The M 204.
+	 */
+	M204(HttpStatus.NO_CONTENT.value() + "." + getBasePathCapitalized(PetardoCoreConstants.BASE_PATH) + ".00",
+			EnumHttpMessages.M204_MESSAGE, HttpStatus.NO_CONTENT),
 	/**
 	 * The E 400.
 	 */
@@ -37,7 +41,8 @@ public enum EnumHttpMessages {
 	E500(HttpStatus.INTERNAL_SERVER_ERROR.value() + "." + getBasePathCapitalized(PetardoCoreConstants.BASE_PATH)
 			+ ".00", EnumHttpMessages.E500_MESSAGE, HttpStatus.INTERNAL_SERVER_ERROR);
 
-	public static final String EOK_MESSAGE = "Operación exitosa.";
+	public static final String M204_MESSAGE = "Sin contenido";
+	public static final String EOK_MESSAGE  = "Operación exitosa.";
 	public static final String E400_MESSAGE = "Solicitud mal formada, favor de validar.";
 	public static final String E401_MESSAGE = "No estas autorizado, favor de validar.";
 	public static final String E404_MESSAGE = "Información no encontrada, favor validar.";

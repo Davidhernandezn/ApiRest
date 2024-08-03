@@ -30,9 +30,15 @@ public class PersonaServiceImpl implements PersonaService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Persona> getAllPersonas() {
-		return personaRepository.findAll();
-	}
+    public GenericResponse<List<Persona>> getAllPersonas() {
+        try {
+            List<Persona> personas = personaRepository.findAll();
+            return new GenericResponse<>(personas);
+        } catch (Exception e) {
+            List<String> detalles = List.of("Error al obtener la lista de personas", e.getMessage());
+            return new GenericResponse<>(detalles, EnumHttpMessages.E400);
+        }
+    }
 
 	@Override
 	@Transactional
@@ -41,6 +47,8 @@ public class PersonaServiceImpl implements PersonaService {
 				.orElseThrow(() -> new EntityNotFoundException("No se encontro persona con id " + idPersona));
 		personaRepository.delete(persona);
 	}
+	
+	
 
 	@Override
 	@Transactional

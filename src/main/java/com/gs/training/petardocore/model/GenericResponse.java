@@ -37,7 +37,7 @@ public class GenericResponse<T> {
 	 */
 	private List<String> detalles;
 
-	// private Object data;
+	// private Object resultado;
 	private T resultado;
 
 	public GenericResponse() {
@@ -61,7 +61,12 @@ public class GenericResponse<T> {
 		this.info = enumHttpMessages.getInfo();
 	}
 
-	// GETTERS AND SETTERS
+	public GenericResponse(EnumHttpMessages enumHttpMessages) {
+		this();
+		this.codigo = enumHttpMessages.getStatus();
+		this.mensaje = enumHttpMessages.getMessage();
+	}
+
 	public String getMensaje() {
 		return mensaje;
 	}

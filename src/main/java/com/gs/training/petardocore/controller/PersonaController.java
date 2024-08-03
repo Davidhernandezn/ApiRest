@@ -35,9 +35,24 @@ public class PersonaController {
 
 	@GetMapping("/personas")
 	@ResponseStatus(HttpStatus.OK)
-	public List<PersonaDto> getAllPersonas() {
-		return personaService.getAllPersonas().stream().map(personaMapper::toDTO).collect(Collectors.toList());
-	}
+	   public ResponseEntity<GenericResponse<List<PersonaDto>>> getAllPersonas() {
+        GenericResponse<List<Persona>> response = personaService.getAllPersonas();
+        
+        // Map Personas to PersonaDtos
+        List<PersonaDto> personaDtos = response.getResultado().stream()
+                .map(personaMapper::toDTO)
+                .collect(Collectors.toList());
+        
+        GenericResponse<List<PersonaDto>> dtoResponse = new GenericResponse<>();
+        dtoResponse.setCodigo(response.getCodigo());
+        dtoResponse.setMensaje(response.getMensaje());
+        dtoResponse.setFolio(response.getFolio());
+        dtoResponse.setInfo(response.getInfo());
+        dtoResponse.setDetalles(response.getDetalles());
+        dtoResponse.setResultado(personaDtos);
+
+        return new ResponseEntity<>(dtoResponse, HttpStatus.OK);
+    }
 
 	@GetMapping("/persona/")
 	@ResponseStatus(HttpStatus.OK)
@@ -66,7 +81,7 @@ public class PersonaController {
 	}
 
 	@DeleteMapping("/persona/")
-	public ResponseEntity<Void> deletePersona(@RequestParam(required = false) Long idPersona) {
+	public ResponseEntity<Void> deletePersona(@RequestParam Long idPersona) {
 		if (idPersona == null) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Error: el parámetro idPersona es requerido.");
 		}

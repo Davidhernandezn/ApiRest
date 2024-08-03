@@ -12,7 +12,7 @@ public interface PersonaService {
 	 * 
 	 * @return a List of all Persona.
 	 */
-	List<Persona> getAllPersonas();
+	GenericResponse<List<Persona>> getAllPersonas();
 
 	/**
 	 * Finds a Persona by ID.
