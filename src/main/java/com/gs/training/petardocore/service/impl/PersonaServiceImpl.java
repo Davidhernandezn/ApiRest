@@ -1,6 +1,10 @@
 package com.gs.training.petardocore.service.impl;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.beanutils.BeanUtilsBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -30,15 +34,15 @@ public class PersonaServiceImpl implements PersonaService {
 
 	@Override
 	@Transactional(readOnly = true)
-    public GenericResponse<List<Persona>> getAllPersonas() {
-        try {
-            List<Persona> personas = personaRepository.findAll();
-            return new GenericResponse<>(personas);
-        } catch (Exception e) {
-            List<String> detalles = List.of("Error al obtener la lista de personas", e.getMessage());
-            return new GenericResponse<>(detalles, EnumHttpMessages.E400);
-        }
-    }
+	public GenericResponse<List<Persona>> getAllPersonas() {
+		try {
+			List<Persona> personas = personaRepository.findAll();
+			return new GenericResponse<>(personas);
+		} catch (Exception e) {
+			List<String> detalles = List.of("Error al obtener la lista de personas", e.getMessage());
+			return new GenericResponse<>(detalles, EnumHttpMessages.E400);
+		}
+	}
 
 	@Override
 	@Transactional
@@ -46,22 +50,6 @@ public class PersonaServiceImpl implements PersonaService {
 		Persona persona = personaRepository.findById(idPersona)
 				.orElseThrow(() -> new EntityNotFoundException("No se encontro persona con id " + idPersona));
 		personaRepository.delete(persona);
-	}
-	
-	
-
-	@Override
-	@Transactional
-	public Persona updatePersona(Long idPersona, Persona personaDetails) {
-		return personaRepository.findById(idPersona).map(persona -> {
-			persona.setNombre(personaDetails.getNombre());
-			persona.setApellidoMaterno(personaDetails.getApellidoMaterno());
-			persona.setApellidoPaterno(personaDetails.getApellidoPaterno());
-			return personaRepository.save(persona);
-		}).orElseGet(() -> {
-			personaDetails.setIdPersona(idPersona);
-			return personaRepository.save(personaDetails);
-		});
 	}
 
 	@Override
@@ -101,4 +89,50 @@ public class PersonaServiceImpl implements PersonaService {
 		}
 	}
 
+	@Override
+	@Transactional
+	public GenericResponse<Persona> updatePersona(Long idPersona, Persona personaDetails) {
+        GenericResponse<Persona> response;
+
+		try {
+			Persona persona = personaRepository.findById(idPersona)
+					.orElseThrow(() -> new EntityNotFoundException("No se encotró persona con el id: " + idPersona));
+
+			copyNonNullProperties(personaDetails, persona);
+
+			final Persona updatedPersona = personaRepository.save(persona);
+			response = new GenericResponse<>(updatedPersona);
+            response.setCodigo("200");
+			//return new GenericResponse<>(updatedPersona);
+
+		} catch (EntityNotFoundException e) {
+			List<String> details = new ArrayList<>();
+			details.add(e.getMessage());
+			return new GenericResponse<>(details, EnumHttpMessages.E404);
+		} catch (Exception e) {
+			List<String> details = new ArrayList<>();
+			details.add("An error occurred while updating the persona.");
+			return new GenericResponse<>(details, EnumHttpMessages.E500);
+		}
+		return response;
+	}
+
+	private void copyNonNullProperties(Object source, Object target) {
+		BeanUtilsBean notNull = new BeanUtilsBean() {
+			@Override
+			public void copyProperty(Object dest, String name, Object value)
+					throws IllegalAccessException, InvocationTargetException {
+				if (value != null) {
+					super.copyProperty(dest, name, value);
+				}
+			}
+		};
+		try {
+			notNull.copyProperties(target, source);
+		} catch (IllegalAccessException | InvocationTargetException e) {
+			// Maneja las excepciones adecuadamente, podrías relanzarlas como
+			// RuntimeException si es necesario
+			throw new RuntimeException("Error copying properties", e);
+		}
+	}
 }

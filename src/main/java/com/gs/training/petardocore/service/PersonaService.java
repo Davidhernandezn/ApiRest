@@ -44,6 +44,6 @@ public interface PersonaService {
 	 * @param personaDetails the new details for the Persona.
 	 * @return the updated Persona.
 	 */
-	Persona updatePersona(Long idPersona, Persona personaDetails);
-
+	//Persona updatePersona(Long idPersona, Persona personaDetails);
+    GenericResponse<Persona> updatePersona(Long idPersona, Persona personaDetails);
 }

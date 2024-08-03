@@ -29,3 +29,16 @@
 {"log_data":{"fecha":"2024-08-02 18:39:59.04","Level":"INFO","Mensaje":" Starting ProtocolHandler [\"http-nio-8084\"]","servicios":[],"TiempoTotal":1}}
 {"log_data":{"fecha":"2024-08-02 18:39:59.07","Level":"INFO","Mensaje":" Tomcat started on port 8084 (http) with context path ''","servicios":[],"TiempoTotal":1}}
 {"log_data":{"fecha":"2024-08-02 18:39:59.09","Level":"INFO","Mensaje":" Started PetardoCoreApplication in 9.232 seconds (process running for 10.752)","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-08-02 18:52:03.72","Level":"INFO","Mensaje":" Initializing Spring DispatcherServlet 'dispatcherServlet'","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-08-02 18:52:03.75","Level":"INFO","Mensaje":" Initializing Servlet 'dispatcherServlet'","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-08-02 18:52:03.81","Level":"INFO","Mensaje":" Completed initialization in 60 ms","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-08-02 18:52:17.01","Level":"WARN","Mensaje":"001-20240802185216812 Failure in @ExceptionHandler com.gs.training.petardocore.exception.RequestExceptionHandler#handleValidationExceptions404(ResponseStatusException)","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-08-02 18:52:22.47","Level":"INFO","Mensaje":"001-20240802185222241 POST banco-azteca/afore/personas/v1/personas request= com.gs.training.petardocore.dto.PersonaDto@121a5562","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-08-02 18:54:05.76","Level":"INFO","Mensaje":"001-20240802185405763 POST banco-azteca/afore/personas/v1/personas request= com.gs.training.petardocore.dto.PersonaDto@611b8d0e","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-08-02 18:54:11.30","Level":"INFO","Mensaje":"001-20240802185411300 POST banco-azteca/afore/personas/v1/personas request= com.gs.training.petardocore.dto.PersonaDto@17b959f2","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-08-02 18:55:15.30","Level":"WARN","Mensaje":"001-20240802185515306 Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PUT' is not supported]","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-08-02 18:59:31.40","Level":"INFO","Mensaje":" Application shutdown requested.","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-08-02 18:59:31.42","Level":"INFO","Mensaje":" Stopping ProtocolHandler [\"http-nio-8084\"]","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-08-02 18:59:31.45","Level":"INFO","Mensaje":" Closing JPA EntityManagerFactory for persistence unit 'default'","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-08-02 18:59:31.46","Level":"INFO","Mensaje":" HikariPool-1 - Shutdown initiated...","servicios":[],"TiempoTotal":1}}
+{"log_data":{"fecha":"2024-08-02 18:59:31.47","Level":"INFO","Mensaje":" HikariPool-1 - Shutdown completed.","servicios":[],"TiempoTotal":1}}

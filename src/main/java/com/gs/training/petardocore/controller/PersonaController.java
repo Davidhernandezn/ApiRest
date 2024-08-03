@@ -2,6 +2,7 @@ package com.gs.training.petardocore.controller;
 import com.gs.ftt.log.LogMonitor;
 import com.gs.training.petardocore.constant.PetardoCoreConstants;
 import com.gs.training.petardocore.dto.PersonaDto;
+import com.gs.training.petardocore.enums.EnumHttpMessages;
 import com.gs.training.petardocore.mapper.PersonaMapper;
 import com.gs.training.petardocore.model.GenericResponse;
 import com.gs.training.petardocore.model.Persona;
@@ -80,6 +81,21 @@ public class PersonaController {
 		}
 	}
 
+	  @PutMapping("persona/")
+	    public ResponseEntity<GenericResponse<Persona>> updatePersona(@RequestParam Long idPersona, @RequestBody Persona personaDetails) {
+	        GenericResponse<Persona> response = personaService.updatePersona(idPersona, personaDetails);
+	        String dtoResponse = response.getCodigo();
+
+	        System.out.println("#RESPONSE#"+dtoResponse);
+	        if (response.getCodigo().equals(EnumHttpMessages.EOK_MESSAGE)) {
+	            return new ResponseEntity<>(response, HttpStatus.OK);
+	        } else if (response.getCodigo().equals(EnumHttpMessages.E404_MESSAGE)) {
+	            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+	        } else {
+	            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+	        }
+	    }
+	
 	@DeleteMapping("/persona/")
 	public ResponseEntity<Void> deletePersona(@RequestParam Long idPersona) {
 		if (idPersona == null) {
