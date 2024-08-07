@@ -101,6 +101,12 @@ public final class PetardoCoreConstants {
 	 * The constant BASE_PATH
 	 */
 	public static final String BASE_PATH = "/banco-azteca/afore/gestion-personas/v1/" + "";
+	
+	/*
+	 * The constant M200.
+	 * */
+	public static final String M200 = "M200";
+	
 	/**
 	 * The constant E400.
 	 */

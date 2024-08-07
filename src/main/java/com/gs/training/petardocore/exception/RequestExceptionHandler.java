@@ -73,6 +73,12 @@ public class RequestExceptionHandler {
 		Map<String, String> map = new ObjectMapper().readValue(str, HashMap.class);
 		details.add(map.get(PetardoCoreConstants.DETAIL));
 		
+		if (ex.getMessage().contains(PetardoCoreConstants.M200)) {
+			
+			genericException = new GenericException(details, EnumHttpMessages.M200);
+			
+		}
+		
 		if (ex.getMessage().contains(PetardoCoreConstants.E404)) {
 			
 			genericException = new GenericException(details, EnumHttpMessages.E404);

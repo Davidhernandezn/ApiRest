@@ -25,7 +25,6 @@ public final class ExceptionsManager {
 	private static final LogMonitor LOGGER = new LogMonitor(ExceptionsManager.class);
 
 	private ExceptionsManager() {
-
 		super();
 	}
 

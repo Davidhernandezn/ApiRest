@@ -1,4 +1,5 @@
 package com.gs.training.petardocore.controller;
+
 import com.gs.ftt.log.LogMonitor;
 import com.gs.training.petardocore.constant.PetardoCoreConstants;
 import com.gs.training.petardocore.dto.PersonaDto;
@@ -36,24 +37,22 @@ public class PersonaController {
 
 	@GetMapping("/personas")
 	@ResponseStatus(HttpStatus.OK)
-	   public ResponseEntity<GenericResponse<List<PersonaDto>>> getAllPersonas() {
-        GenericResponse<List<Persona>> response = personaService.getAllPersonas();
-        
-        // Map Personas to PersonaDtos
-        List<PersonaDto> personaDtos = response.getResultado().stream()
-                .map(personaMapper::toDTO)
-                .collect(Collectors.toList());
-        
-        GenericResponse<List<PersonaDto>> dtoResponse = new GenericResponse<>();
-        dtoResponse.setCodigo(response.getCodigo());
-        dtoResponse.setMensaje(response.getMensaje());
-        dtoResponse.setFolio(response.getFolio());
-        dtoResponse.setInfo(response.getInfo());
-        dtoResponse.setDetalles(response.getDetalles());
-        dtoResponse.setResultado(personaDtos);
+	public ResponseEntity<GenericResponse<List<PersonaDto>>> getAllPersonas() {
+		GenericResponse<List<Persona>> response = personaService.getAllPersonas();
 
-        return new ResponseEntity<>(dtoResponse, HttpStatus.OK);
-    }
+		List<PersonaDto> personaDtos = response.getResultado().stream().map(personaMapper::toDTO)
+				.collect(Collectors.toList());
+
+		GenericResponse<List<PersonaDto>> dtoResponse = new GenericResponse<>();
+		dtoResponse.setCodigo(response.getCodigo());
+		dtoResponse.setMensaje(response.getMensaje());
+		dtoResponse.setFolio(response.getFolio());
+		dtoResponse.setInfo(response.getInfo());
+		dtoResponse.setDetalles(response.getDetalles());
+		dtoResponse.setResultado(personaDtos);
+
+		return new ResponseEntity<>(dtoResponse, HttpStatus.OK);
+	}
 
 	@GetMapping("/persona/")
 	@ResponseStatus(HttpStatus.OK)
@@ -69,8 +68,8 @@ public class PersonaController {
 	@PostMapping("persona")
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<?> create(
-		    @RequestHeader(name = PetardoCoreConstants.USER_EXTERNAL_HEADER, required = true) @NotBlank String usuarioExterno,
-		    @RequestHeader(name = PetardoCoreConstants.USER_HEADER_TOKEN, required = true) @NotBlank String usuarioToken,
+			@RequestHeader(name = PetardoCoreConstants.USER_EXTERNAL_HEADER, required = true) @NotBlank String usuarioExterno,
+			@RequestHeader(name = PetardoCoreConstants.USER_HEADER_TOKEN, required = true) @NotBlank String usuarioToken,
 			@Valid @RequestBody PersonaDto personaDto) {
 		LOGGER.info("POST banco-azteca/afore/personas/v1/personas request= {}", personaDto);
 		try {
@@ -81,21 +80,20 @@ public class PersonaController {
 		}
 	}
 
-	  @PutMapping("persona/")
-	    public ResponseEntity<GenericResponse<Persona>> updatePersona(@RequestParam Long idPersona, @RequestBody Persona personaDetails) {
-	        GenericResponse<Persona> response = personaService.updatePersona(idPersona, personaDetails);
-	        String dtoResponse = response.getCodigo();
+	@PutMapping("persona/")
+	public ResponseEntity<GenericResponse<Persona>> updatePersona(@RequestParam Long idPersona,
+			@RequestBody Persona personaDetails) {
+		GenericResponse<Persona> response = personaService.updatePersona(idPersona, personaDetails);
 
-	        System.out.println("#RESPONSE#"+dtoResponse);
-	        if (response.getCodigo().equals(EnumHttpMessages.EOK_MESSAGE)) {
-	            return new ResponseEntity<>(response, HttpStatus.OK);
-	        } else if (response.getCodigo().equals(EnumHttpMessages.E404_MESSAGE)) {
-	            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
-	        } else {
-	            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-	        }
-	    }
-	
+		if (response.getCodigo().equals(EnumHttpMessages.EOK_MESSAGE)) {
+			return new ResponseEntity<>(response, HttpStatus.OK);
+		} else if (response.getCodigo().equals(EnumHttpMessages.E404_MESSAGE)) {
+			return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+		} else {
+			return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
 	@DeleteMapping("/persona/")
 	public ResponseEntity<Void> deletePersona(@RequestParam Long idPersona) {
 		if (idPersona == null) {

@@ -92,7 +92,7 @@ public class PersonaServiceImpl implements PersonaService {
 	@Override
 	@Transactional
 	public GenericResponse<Persona> updatePersona(Long idPersona, Persona personaDetails) {
-        GenericResponse<Persona> response;
+		GenericResponse<Persona> response;
 
 		try {
 			Persona persona = personaRepository.findById(idPersona)
@@ -102,17 +102,16 @@ public class PersonaServiceImpl implements PersonaService {
 
 			final Persona updatedPersona = personaRepository.save(persona);
 			response = new GenericResponse<>(updatedPersona);
-            response.setCodigo("200");
-			//return new GenericResponse<>(updatedPersona);
+			response.setCodigo(EnumHttpMessages.EOK_MESSAGE);
 
 		} catch (EntityNotFoundException e) {
-			List<String> details = new ArrayList<>();
-			details.add(e.getMessage());
-			return new GenericResponse<>(details, EnumHttpMessages.E404);
+			List<String> detalle = new ArrayList<>();
+			detalle.add(e.getMessage());
+			return new GenericResponse<>(detalle, EnumHttpMessages.E404);
 		} catch (Exception e) {
-			List<String> details = new ArrayList<>();
-			details.add("An error occurred while updating the persona.");
-			return new GenericResponse<>(details, EnumHttpMessages.E500);
+			List<String> detalle = new ArrayList<>();
+			detalle.add("error al actulizar persona.");
+			return new GenericResponse<>(detalle, EnumHttpMessages.E500);
 		}
 		return response;
 	}

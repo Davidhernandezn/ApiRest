@@ -8,42 +8,41 @@ import com.gs.training.petardocore.model.Persona;
 public interface PersonaService {
 
 	/**
-	 * Retrieves all Persona entities.
+	 * Consultar personas
 	 * 
-	 * @return a List of all Persona.
+	 * @return lista de todas las Personas.
 	 */
 	GenericResponse<List<Persona>> getAllPersonas();
 
 	/**
-	 * Finds a Persona by ID.
+	 * Busca a una persona por su id
 	 * 
-	 * @param Long id
-	 * @return the Persona with the specified ID.
+	 * @param Long idPersona
+	 * @return persona consultada por su id.
 	 */
 	GenericResponse<Persona> findById(Long idPersona);
 
 	/**
-	 * Saves a new Person
+	 * Guarda registro de una persona
 	 * 
-	 * @param persona the Persona to saved.
-	 * @return the saved Persona.
+	 * @param personaDto que contiene datos de una persona a guardar.
+	 * @return persona guardada.
 	 */
 	GenericResponse<Persona> savePersona(PersonaDto personaDto);
 
 	/**
-	 * Deletes an existing Persona.
+	 * Eliminar a una persona por su id
 	 * 
-	 * @param Long id
+	 * @param Long idPersona
 	 */
 	void deletePersona(Long idPersona);
 
 	/**
-	 * Updates an existing Persona.
+	 * Actualiza el registro de una presona
 	 * 
-	 * @param id             the ID of the Persona to be updated.
-	 * @param personaDetails the new details for the Persona.
-	 * @return the updated Persona.
+	 * @param idPersona      de la Persona que se desea actualizar.
+	 * @param personaDetails los datos modificados para Persona.
+	 * @return Persona actualizada.
 	 */
-	//Persona updatePersona(Long idPersona, Persona personaDetails);
-    GenericResponse<Persona> updatePersona(Long idPersona, Persona personaDetails);
+	GenericResponse<Persona> updatePersona(Long idPersona, Persona personaDetails);
 }

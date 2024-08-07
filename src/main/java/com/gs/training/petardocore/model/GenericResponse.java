@@ -17,27 +17,33 @@ import lombok.Data;
 public class GenericResponse<T> {
 
 	/**
-	 * Request HTTP Status Code.
-	 */
-	private String mensaje;
-	/**
 	 * Information about the request status http.
 	 */
+	private String mensaje;
+
+	/**
+	 * Request HTTP Status Code.
+	 */
 	private String codigo;
+
 	/**
 	 * Request Traceability Identifier.
 	 */
+
 	private String folio;
+
 	/**
 	 * Error Information URL.
 	 */
+
 	private Object info;
+
 	/**
-	 * Details of the error if the request failed.
+	 * Detalles del error si se presenta un error en la peticion.
 	 */
+
 	private List<String> detalles;
 
-	// private Object resultado;
 	private T resultado;
 
 	public GenericResponse() {
@@ -54,7 +60,6 @@ public class GenericResponse<T> {
 	}
 
 	public GenericResponse(List<String> details, EnumHttpMessages enumHttpMessages) {
-		this();
 		this.codigo = enumHttpMessages.getStatus();
 		this.mensaje = enumHttpMessages.getMessage();
 		this.detalles = new ArrayList<>(details);

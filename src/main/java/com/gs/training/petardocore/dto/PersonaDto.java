@@ -1,5 +1,6 @@
 package com.gs.training.petardocore.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -19,8 +20,8 @@ public class PersonaDto {
 	private String apellidoMaterno;
 
 	@NotNull(message = "La edad es requerida")
-	// @Pattern(regexp = "\\d{2}", message = "Ingrese una edad validad")
-	private int edad;
+	@JsonProperty(required = true)
+	private Integer edad;
 
 	@NotNull(message = "La ciudad es requerida")
 	private String ciudad;
@@ -80,11 +81,11 @@ public class PersonaDto {
 		this.apellidoMaterno = apellidoMaterno;
 	}
 
-	public int getEdad() {
+	public Integer getEdad() {
 		return edad;
 	}
 
-	public void setEdad(int edad) {
+	public void setEdad(Integer edad) {
 		this.edad = edad;
 	}
 

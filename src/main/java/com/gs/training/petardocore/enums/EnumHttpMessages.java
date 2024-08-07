@@ -15,11 +15,18 @@ import java.util.Locale;
  */
 @Getter
 public enum EnumHttpMessages {
+	
+	/**
+	 * The M 200.
+	 */
+	M200(HttpStatus.OK.value() + "." + getBasePathCapitalized(PetardoCoreConstants.BASE_PATH) + ".00",
+			EnumHttpMessages.EOK_MESSAGE, HttpStatus.OK),
+	
 	/**
 	 * The M 204.
 	 */
 	M204(HttpStatus.NO_CONTENT.value() + "." + getBasePathCapitalized(PetardoCoreConstants.BASE_PATH) + ".00",
-			EnumHttpMessages.M204_MESSAGE, HttpStatus.NO_CONTENT),
+			EnumHttpMessages.EOK_MESSAGE, HttpStatus.OK),
 	/**
 	 * The E 400.
 	 */
