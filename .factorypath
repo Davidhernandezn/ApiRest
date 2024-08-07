@@ -78,7 +78,7 @@
     <factorypathentry kind="VARJAR" id="M2_REPO/org/ow2/asm/asm/9.3/asm-9.3.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/spring-core/6.1.4/spring-core-6.1.4.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/spring-jcl/6.1.4/spring-jcl-6.1.4.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="VARJAR" id="M2_REPO/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/projectlombok/lombok/1.18.28/lombok-1.18.28.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/apache/commons/commons-lang3/3.13.0/commons-lang3-3.13.0.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/mapstruct/mapstruct/1.5.0.Final/mapstruct-1.5.0.Final.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/mapstruct/mapstruct-processor/1.5.0.Final/mapstruct-processor-1.5.0.Final.jar" enabled="true" runInBatchMode="false"/>

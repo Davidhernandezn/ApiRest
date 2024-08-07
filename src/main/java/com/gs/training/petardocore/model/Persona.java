@@ -4,21 +4,26 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.Data;
 
-@Data
 @Entity
 public class Persona {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idPersona;
+	
 	private String nombre;
+	
 	private String apellidoPaterno;
+	
 	private String apellidoMaterno;
+	
 	private int edad;
+	
 	private String ciudad;
+	
 	private String email;
+	
 	private String telefono;
 
 	public Persona() {

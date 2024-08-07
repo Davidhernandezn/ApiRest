@@ -6,14 +6,12 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.gs.training.petardocore.enums.EnumHttpMessages;
 import com.gs.training.petardocore.util.Folio;
-import lombok.Data;
 
 /**
  * The type Generic insert response.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({ "codigo", "mensaje", "folio", "info", "detalles" })
-@Data
 public class GenericResponse<T> {
 
 	/**
@@ -67,9 +65,15 @@ public class GenericResponse<T> {
 	}
 
 	public GenericResponse(EnumHttpMessages enumHttpMessages) {
-		this();
 		this.codigo = enumHttpMessages.getStatus();
 		this.mensaje = enumHttpMessages.getMessage();
+	}
+
+	public GenericResponse(T resultado, EnumHttpMessages enumHttpMessages) {
+		this.codigo = enumHttpMessages.getStatus();
+		this.mensaje = enumHttpMessages.getMessage();
+		this.folio = Folio.HOLDER.get();
+		this.resultado = resultado;
 	}
 
 	public String getMensaje() {

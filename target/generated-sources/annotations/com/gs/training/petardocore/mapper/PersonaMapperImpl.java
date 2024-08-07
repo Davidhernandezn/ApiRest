@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-08-05T18:41:31-0600",
+    date = "2024-08-07T13:23:25-0600",
     comments = "version: 1.5.0.Final, compiler: Eclipse JDT (IDE) 3.35.0.v20230814-2020, environment: Java 17.0.8.1 (Eclipse Adoptium)"
 )
 @Component
@@ -21,13 +21,13 @@ public class PersonaMapperImpl implements PersonaMapper {
 
         PersonaDto personaDto = new PersonaDto();
 
-        personaDto.setApellidoMaterno( persona.getApellidoMaterno() );
-        personaDto.setApellidoPaterno( persona.getApellidoPaterno() );
-        personaDto.setCiudad( persona.getCiudad() );
-        personaDto.setEdad( persona.getEdad() );
-        personaDto.setEmail( persona.getEmail() );
         personaDto.setIdPersona( persona.getIdPersona() );
         personaDto.setNombre( persona.getNombre() );
+        personaDto.setApellidoPaterno( persona.getApellidoPaterno() );
+        personaDto.setApellidoMaterno( persona.getApellidoMaterno() );
+        personaDto.setEdad( persona.getEdad() );
+        personaDto.setCiudad( persona.getCiudad() );
+        personaDto.setEmail( persona.getEmail() );
         personaDto.setTelefono( persona.getTelefono() );
 
         return personaDto;
@@ -41,15 +41,15 @@ public class PersonaMapperImpl implements PersonaMapper {
 
         Persona persona = new Persona();
 
-        persona.setApellidoMaterno( personaDTO.getApellidoMaterno() );
+        persona.setIdPersona( personaDTO.getIdPersona() );
+        persona.setNombre( personaDTO.getNombre() );
         persona.setApellidoPaterno( personaDTO.getApellidoPaterno() );
-        persona.setCiudad( personaDTO.getCiudad() );
+        persona.setApellidoMaterno( personaDTO.getApellidoMaterno() );
         if ( personaDTO.getEdad() != null ) {
             persona.setEdad( personaDTO.getEdad() );
         }
+        persona.setCiudad( personaDTO.getCiudad() );
         persona.setEmail( personaDTO.getEmail() );
-        persona.setIdPersona( personaDTO.getIdPersona() );
-        persona.setNombre( personaDTO.getNombre() );
         persona.setTelefono( personaDTO.getTelefono() );
 
         return persona;

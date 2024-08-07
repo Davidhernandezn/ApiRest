@@ -3,7 +3,7 @@ package com.gs.training.petardocore.service.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.stream.Collectors;
 import org.apache.commons.beanutils.BeanUtilsBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -34,13 +34,14 @@ public class PersonaServiceImpl implements PersonaService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public GenericResponse<List<Persona>> getAllPersonas() {
+	public GenericResponse<List<PersonaDto>> getAllPersonas() {
 		try {
 			List<Persona> personas = personaRepository.findAll();
-			return new GenericResponse<>(personas);
-		} catch (Exception e) {
-			List<String> detalles = List.of("Error al obtener la lista de personas", e.getMessage());
-			return new GenericResponse<>(detalles, EnumHttpMessages.E400);
+			List<PersonaDto> personaDtos = personas.stream().map(personaMapper::toDTO).collect(Collectors.toList());
+			return new GenericResponse<>(personaDtos, EnumHttpMessages.M200);
+		} catch (RuntimeException e) {
+			return new GenericResponse<>(List.of("Error al obtener la lista de personas", e.getMessage()),
+					EnumHttpMessages.E400);
 		}
 	}
 
@@ -74,7 +75,6 @@ public class PersonaServiceImpl implements PersonaService {
 						EnumHttpMessages.E404);
 			}
 			return new GenericResponse<Persona>(persona);
-			// return new GenericResponse<Persona>();
 
 		} catch (DataAccessException ex) {
 			GenericException genericException = new GenericException(List.of("Error fetching persona"),
@@ -129,8 +129,6 @@ public class PersonaServiceImpl implements PersonaService {
 		try {
 			notNull.copyProperties(target, source);
 		} catch (IllegalAccessException | InvocationTargetException e) {
-			// Maneja las excepciones adecuadamente, podrías relanzarlas como
-			// RuntimeException si es necesario
 			throw new RuntimeException("Error copying properties", e);
 		}
 	}

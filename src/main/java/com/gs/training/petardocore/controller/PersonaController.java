@@ -17,7 +17,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("${basePath}")
@@ -38,21 +37,10 @@ public class PersonaController {
 	@GetMapping("/personas")
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<GenericResponse<List<PersonaDto>>> getAllPersonas() {
-		GenericResponse<List<Persona>> response = personaService.getAllPersonas();
-
-		List<PersonaDto> personaDtos = response.getResultado().stream().map(personaMapper::toDTO)
-				.collect(Collectors.toList());
-
-		GenericResponse<List<PersonaDto>> dtoResponse = new GenericResponse<>();
-		dtoResponse.setCodigo(response.getCodigo());
-		dtoResponse.setMensaje(response.getMensaje());
-		dtoResponse.setFolio(response.getFolio());
-		dtoResponse.setInfo(response.getInfo());
-		dtoResponse.setDetalles(response.getDetalles());
-		dtoResponse.setResultado(personaDtos);
-
-		return new ResponseEntity<>(dtoResponse, HttpStatus.OK);
+	    GenericResponse<List<PersonaDto>> response = personaService.getAllPersonas();
+	    return new ResponseEntity<>(response, HttpStatus.OK);
 	}
+
 
 	@GetMapping("/persona/")
 	@ResponseStatus(HttpStatus.OK)
