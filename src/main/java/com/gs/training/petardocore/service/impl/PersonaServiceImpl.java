@@ -1,21 +1,17 @@
 package com.gs.training.petardocore.service.impl;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.apache.commons.beanutils.BeanUtilsBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 import com.gs.training.petardocore.dto.PersonaDto;
 import com.gs.training.petardocore.enums.EnumHttpMessages;
-import com.gs.training.petardocore.exception.ExceptionsManager;
-import com.gs.training.petardocore.exception.GenericException;
 import com.gs.training.petardocore.mapper.PersonaMapper;
 import com.gs.training.petardocore.model.GenericResponse;
 import com.gs.training.petardocore.model.Persona;
@@ -59,7 +55,7 @@ public class PersonaServiceImpl implements PersonaService {
 		try {
 			Persona persona = personaMapper.toEntity(personaDto);
 			Persona savedPersona = personaRepository.save(persona);
-			return new GenericResponse<>(savedPersona);
+			return new GenericResponse<>(savedPersona, EnumHttpMessages.M201);
 		} catch (DataAccessException ex) {
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error saving persona", ex);
 		}
@@ -69,53 +65,40 @@ public class PersonaServiceImpl implements PersonaService {
 	@Transactional(readOnly = true)
 	public GenericResponse<Persona> findById(Long idPersona) {
 		try {
-			Persona persona = personaRepository.findById(idPersona).orElse(null);
-			if (persona == null) {
-				throw new GenericException(List.of("No se obtuvo información relacionada a la consulta."),
-						EnumHttpMessages.E404);
-			}
-			return new GenericResponse<Persona>(persona);
-
+			return personaRepository.findById(idPersona)
+					.map(persona -> new GenericResponse<>(persona, EnumHttpMessages.M200)).orElseGet(
+							() -> new GenericResponse<>(List.of("No se obtuvo información relacionada a la consulta."),
+									EnumHttpMessages.E404));
 		} catch (DataAccessException ex) {
-			GenericException genericException = new GenericException(List.of("Error fetching persona"),
+			return new GenericResponse<>(List.of("Error al buscar a la persona", ex.getMessage()),
 					EnumHttpMessages.E500);
-			ResponseEntity<GenericResponse> errorResponse = ExceptionsManager.returnResponseEntity(genericException);
-			throw new RuntimeException(errorResponse.getBody().toString(), ex);
 		} catch (Exception ex) {
-			GenericException genericException = new GenericException(List.of("Internal server error"),
-					EnumHttpMessages.E500);
-			ResponseEntity<GenericResponse> errorResponse = ExceptionsManager.returnResponseEntity(genericException);
-			throw new RuntimeException(errorResponse.getBody().toString(), ex);
+			return new GenericResponse<>(List.of("Internal server error", ex.getMessage()), EnumHttpMessages.E500);
 		}
 	}
 
 	@Override
 	@Transactional
 	public GenericResponse<Persona> updatePersona(Long idPersona, Persona personaDetails) {
-		GenericResponse<Persona> response;
+		Persona persona = personaRepository.findById(idPersona).orElse(null);
+
+		if (persona == null) {
+			return new GenericResponse<>(List.of("No se encontró persona con el id: " + idPersona),
+					EnumHttpMessages.E404);
+		}
 
 		try {
-			Persona persona = personaRepository.findById(idPersona)
-					.orElseThrow(() -> new EntityNotFoundException("No se encotró persona con el id: " + idPersona));
-
 			copyNonNullProperties(personaDetails, persona);
-
-			final Persona updatedPersona = personaRepository.save(persona);
-			response = new GenericResponse<>(updatedPersona);
-			response.setCodigo(EnumHttpMessages.EOK_MESSAGE);
-
-		} catch (EntityNotFoundException e) {
-			List<String> detalle = new ArrayList<>();
-			detalle.add(e.getMessage());
-			return new GenericResponse<>(detalle, EnumHttpMessages.E404);
+			Persona updatedPersona = personaRepository.save(persona);
+			return new GenericResponse<>(updatedPersona, EnumHttpMessages.M200);
 		} catch (Exception e) {
-			List<String> detalle = new ArrayList<>();
-			detalle.add("error al actulizar persona.");
-			return new GenericResponse<>(detalle, EnumHttpMessages.E500);
+			return new GenericResponse<>(List.of("Error al actualizar persona: " + e.getMessage()),
+					EnumHttpMessages.E500);
 		}
-		return response;
 	}
 
+	
+	
 	private void copyNonNullProperties(Object source, Object target) {
 		BeanUtilsBean notNull = new BeanUtilsBean() {
 			@Override
@@ -132,4 +115,5 @@ public class PersonaServiceImpl implements PersonaService {
 			throw new RuntimeException("Error copying properties", e);
 		}
 	}
+	
 }
