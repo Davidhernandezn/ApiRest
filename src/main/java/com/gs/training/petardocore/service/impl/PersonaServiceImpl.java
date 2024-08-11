@@ -1,5 +1,6 @@
 package com.gs.training.petardocore.service.impl;
 
+import java.lang.System.Logger;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -88,7 +89,7 @@ public class PersonaServiceImpl implements PersonaService {
 		}
 
 		try {
-			copyNonNullProperties(personaDetails, persona);
+			copyNonNullProperties(personaDetails, persona, 0);
 			Persona updatedPersona = personaRepository.save(persona);
 			return new GenericResponse<>(updatedPersona, EnumHttpMessages.M200);
 		} catch (Exception e) {
@@ -97,14 +98,13 @@ public class PersonaServiceImpl implements PersonaService {
 		}
 	}
 
-	
-	
-	private void copyNonNullProperties(Object source, Object target) {
+	private void copyNonNullProperties(Persona source, Persona target, int defaultValue) {
+
 		BeanUtilsBean notNull = new BeanUtilsBean() {
 			@Override
 			public void copyProperty(Object dest, String name, Object value)
 					throws IllegalAccessException, InvocationTargetException {
-				if (value != null) {
+				if (value != null && !(value instanceof Integer && (Integer) value == defaultValue)) {
 					super.copyProperty(dest, name, value);
 				}
 			}
@@ -115,5 +115,5 @@ public class PersonaServiceImpl implements PersonaService {
 			throw new RuntimeException("Error copying properties", e);
 		}
 	}
-	
+
 }
